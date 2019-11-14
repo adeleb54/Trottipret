@@ -6,6 +6,7 @@ Trottipret::Trottipret(QWidget *parent) :
     ui(new Ui::Trottipret)
 {
     ui->setupUi(this);
+    //ui ->textMdp->setEchoMode(QLineEdit::Password);
 }
 
 Trottipret::~Trottipret()
