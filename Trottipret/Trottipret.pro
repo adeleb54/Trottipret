@@ -25,10 +25,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        trottipret.cpp
+    inscription.cpp
 
 HEADERS += \
         trottipret.h
 
 FORMS += \
-        trottipret.ui
+    inscription.ui
