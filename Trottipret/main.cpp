@@ -1,4 +1,4 @@
-#include "inscription.h"
+#include "gestionnaireCompte.h"
 #include <QApplication>
 
 using namespace std;
@@ -6,10 +6,8 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Trottipret w;
-    w.show();
-
-
+    GestionnaireCompte gestCompte;
+    gestCompte.show();
 
     return a.exec();
 }
