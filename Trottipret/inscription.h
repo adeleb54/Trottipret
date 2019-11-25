@@ -2,6 +2,7 @@
 #define TROTTIPRET_H
 
 #include <QMainWindow>
+#include <string.h>
 
 namespace Ui {
 class Trottipret;
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::Trottipret *ui;
+
+public slots:
+    void getNom();
 };
 
 #endif // TROTTIPRET_H

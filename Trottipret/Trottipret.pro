@@ -28,7 +28,7 @@ SOURCES += \
     inscription.cpp
 
 HEADERS += \
-        trottipret.h
+    inscription.h
 
 FORMS += \
     inscription.ui
