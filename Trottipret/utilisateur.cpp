@@ -2,11 +2,6 @@
 
 using namespace std;
 
-Utilisateur::Utilisateur()
-{
-
-}
-
 Utilisateur::Utilisateur(string nom, string mail, string mdp)
 {
     this->nom = nom;
@@ -14,7 +9,7 @@ Utilisateur::Utilisateur(string nom, string mail, string mdp)
     this->mdp = mdp;
 }
 
-void Utilisateur::setIdUtilisateur(long id)
+void Utilisateur::setIdUtilisateur(int id)
 {
     this->idUtilisateur = id;
 }

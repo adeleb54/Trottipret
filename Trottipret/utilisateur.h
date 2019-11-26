@@ -7,9 +7,8 @@
 class Utilisateur
 {
 public:
-    Utilisateur();
     Utilisateur(std::string nom, std::string mail, std::string mdp);
-    void setIdUtilisateur(long id);
+    void setIdUtilisateur(int id);
     void setNom(std::string nom);
     void setMail(std::string mail);
     void setMdp(std::string mdp);
