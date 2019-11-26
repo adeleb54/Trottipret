@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Trottipret</class>
- <widget class="QMainWindow" name="Trottipret">
+ <class>GestionnaireCompte</class>
+ <widget class="QMainWindow" name="GestionnaireCompte">
   <property name="geometry">
    <rect>
     <x>0</x>
