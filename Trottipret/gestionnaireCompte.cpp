@@ -1,5 +1,6 @@
 #include "gestionnaireCompte.h"
 #include "ui_gestionnaireCompte.h"
+#include <iostream>
 
 using namespace std;
 
@@ -14,19 +15,19 @@ GestionnaireCompte::GestionnaireCompte(QWidget *parent) :
 }
 
 string GestionnaireCompte::getNom(){
-    return str = ui->textNom->text();
+    return ui->textNom->text().toStdString();
 }
 
 string GestionnaireCompte::getMdp(){
-    return str = ui->textMdp->text();
+    return ui->textMdp->text().toStdString();
 }
 
 string GestionnaireCompte::getMdpConfirmation(){
-    return str = ui->textMdp_2->text();
+    return ui->textMdp_2->text().toStdString();
 }
 
 string GestionnaireCompte::getAdresse(){
-    return str = ui->textAdresse->text();
+    return ui->textAdresse->text().toStdString();
 }
 
 void GestionnaireCompte::verification(){
