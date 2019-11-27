@@ -1,5 +1,6 @@
 #include "gestionnaireCompte.h"
 #include "ui_gestionnaireCompte.h"
+#include <iostream>
 #include <QtSql>
 
 using namespace std;
@@ -8,24 +9,18 @@ GestionnaireCompte::GestionnaireCompte(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GestionnaireCompte){
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setHostName("./sqlite.db");
-    db.setUserName("root");
-    db.setPassword("");
-    db.setDatabaseName("dbTrottipret");
+    db.setDatabaseName("./sqlite.db");
 
-    if(db.open("root", "")){
-        std::cout << "Vous êtes maintenant connecté à " << db.hostName().toStdString() << std::endl;
-    }
-    else{
-        std::cout << "La connexion a échouée, désolé" << std::endl;
+    if(!db.open()){
+        cout << "Je ne suis pas connecté à " << db.hostName().toStdString() << endl;
     }
 
-    QSqlQuery query(db);
+    QSqlQuery query;
 
-    if(query.exec("SELECT * FROM Utilisateur")){
-        std::cout << "C bon)" << std::endl;
-    }else{
-        std::cout << "Une erreur s'est produite. :(" << std::endl << query.lastError().text().toStdString() << std::endl;
+    query.exec("SELECT * FROM Utilisateur");
+
+    while (query.next()){
+        cout << query.value(0).toString().toStdString() << endl;
     }
 
     ui->setupUi(this);
