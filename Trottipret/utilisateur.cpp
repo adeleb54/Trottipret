@@ -2,11 +2,15 @@
 
 using namespace std;
 
+long Utilisateur::idinc = 0;
+
 Utilisateur::Utilisateur(string nom, string mail, string mdp)
 {
     this->nom = nom;
     this->mail = mail;
     this->mdp = mdp;
+    this->idUtilisateur = idinc;
+    this->idinc++;
 }
 
 void Utilisateur::setIdUtilisateur(int id)
@@ -47,4 +51,10 @@ string Utilisateur::getMail()
 string Utilisateur::getMdp()
 {
     return this->mdp;
+}
+
+void Utilisateur::toString(){
+    cout << "Utilisateur numero : " + to_string(idUtilisateur) << "\n";
+    cout << "   nom : " + nom << "\n";
+    cout << "   mail : " + mail << endl;
 }

@@ -2,6 +2,8 @@
 #define GESTIONNAIRECOMPTE_H
 
 #include <QMainWindow>
+#include <QMessageBox>
+#include <QRegularExpression>
 #include <string.h>
 
 namespace Ui {
@@ -23,7 +25,7 @@ public:
 private:
     Ui::GestionnaireCompte *ui;
 
-public slots:
+private slots:
     void verification();
 };
 

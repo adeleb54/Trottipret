@@ -2,6 +2,7 @@
 #define UTILISATEUR_H
 
 #include <string>
+#include <iostream>
 
 
 class Utilisateur
@@ -16,11 +17,13 @@ public:
     std::string getNom();
     std::string getMail();
     std::string getMdp();
+    void toString();
 
 private :
     long idUtilisateur;
     std::string nom;
     std::string mail;
     std::string mdp;
+    static long idinc;
 };
 #endif // UTILISATEUR_H
