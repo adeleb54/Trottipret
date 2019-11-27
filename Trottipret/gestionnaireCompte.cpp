@@ -1,7 +1,5 @@
 #include "gestionnaireCompte.h"
 #include "ui_gestionnaireCompte.h"
-#include "utilisateur.h"
-#include <iostream>
 
 using namespace std;
 
@@ -56,7 +54,9 @@ void GestionnaireCompte::verification(){
     }else
     {
         Utilisateur user(nom, adresse, mdp);
-        user.toString();
+        utilisateurs.insert(make_pair(adresse, &user));
+
+        utilisateurs.at(mail.toStdString())->toString();
     }
 }
 

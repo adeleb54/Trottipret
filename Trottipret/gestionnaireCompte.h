@@ -5,6 +5,10 @@
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <string.h>
+#include <iostream>
+#include <map>
+#include "utilisateur.h"
+
 
 namespace Ui {
 class GestionnaireCompte;
@@ -24,6 +28,7 @@ public:
 
 private:
     Ui::GestionnaireCompte *ui;
+    std::map<std::string, Utilisateur*> utilisateurs;
 
 private slots:
     void verification();
