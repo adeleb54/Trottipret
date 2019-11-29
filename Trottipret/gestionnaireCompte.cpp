@@ -1,6 +1,11 @@
 #include "gestionnaireCompte.h"
 
+/**
+ * Modification : changement de l'attribut mdp
+ */
+
 using namespace std;
+
 
 GestionnaireCompte::GestionnaireCompte(){
     db.setDatabaseName("./sqlite.db");
@@ -34,13 +39,15 @@ void GestionnaireCompte::verification(QString nom, QString mdp, QString mdpConfi
         alert.exec();
     }else{
 
-        query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
+        query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, PASSWORD(:mdp), :notation);");
         query.bindValue(":iduser", id);
         query.bindValue(":nom", nom);
         query.bindValue(":mail", mail);
         query.bindValue(":mdp", mdp);
         query.bindValue(":notation", 5);
-        query.exec();
+        qDebug() << query.exec() << endl;
+        cout << query.lastQuery().toStdString() << endl;
+        qDebug() << query.lastError() << endl;
         query.finish();
         id++;
         cout << "Ajouté !" << endl;
