@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/new/prefix1">
-        <file>sqlite.db</file>
+        <file alias="/new/prefix1/sqlite.db">sqlite.db</file>
     </qresource>
 </RCC>

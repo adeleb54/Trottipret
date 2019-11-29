@@ -1,7 +1,5 @@
 #include "gestionnaireCompte.h"
 #include "ui_gestionnaireCompte.h"
-#include <iostream>
-#include <QtSql>
 
 using namespace std;
 
@@ -57,36 +55,17 @@ void GestionnaireCompte::verification(){
     {
         alert.setText("L'adresse mail n'est pas au bon format");
         alert.exec();
-    }else
-    {
+    }else{
 
-        Utilisateur user(nom.toStdString(), mail.toStdString(), mdp.toStdString());
         query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
-        query.bindValue(":iduser", 1);
+        query.bindValue(":iduser", id);
         query.bindValue(":nom", nom);
         query.bindValue(":mail", mail);
         query.bindValue(":mdp", mdp);
         query.bindValue(":notation", 5);
-        cout << query.lastQuery().toStdString() << endl;
-        cout << query.isValid() << endl;
-        qDebug()<< query.exec() << "  " << query.lastError() <<endl;
+        query.exec();
         query.finish();
-        query.prepare("SELECT * FROM Utilisateur");
-        if(query.exec())
-        {
-            while(query.next())
-            {
-                int i = 0;
-                while(i < 5){
-                QString nameRow = query.value(i).toString();//Récupère le résultat de la requête
-                cout << "résultat : " << nameRow.toStdString() << endl;
-                i++;
-                }
-            }
-        }else{
-            cout << "faux" << endl;
-        }
-        //query.finish();
+        id++;
     }
 }
 

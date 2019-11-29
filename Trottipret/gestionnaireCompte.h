@@ -6,8 +6,6 @@
 #include <QRegularExpression>
 #include <string.h>
 #include <iostream>
-#include <map>
-#include "utilisateur.h"
 #include <QtSql>
 
 
@@ -20,6 +18,7 @@ class GestionnaireCompte : public QMainWindow
     Q_OBJECT
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     QSqlQuery query;
+    int id = 0;
 public:
     explicit GestionnaireCompte(QWidget *parent = 0);
     QString getNom();
@@ -30,7 +29,6 @@ public:
 
 private:
     Ui::GestionnaireCompte *ui;
-    std::map<std::string, Utilisateur*> utilisateurs;
 
 private slots:
     void verification();

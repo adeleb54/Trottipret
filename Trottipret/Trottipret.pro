@@ -26,11 +26,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    utilisateur.cpp \
     gestionnaireCompte.cpp
 
 HEADERS += \
-    utilisateur.h \
     gestionnaireCompte.h
 
 FORMS += \
