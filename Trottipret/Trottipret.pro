@@ -34,7 +34,6 @@ HEADERS += \
     inscription.h
 
 FORMS += \
-    gestionnaireCompte.ui \
     inscription.ui
 
 RESOURCES += \

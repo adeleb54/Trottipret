@@ -13,22 +13,15 @@ namespace Ui {
 class GestionnaireCompte;
 }
 
-class GestionnaireCompte // : public QMainWindow
+class GestionnaireCompte
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     QSqlQuery query;
     int id = 0;
 public:
-    explicit GestionnaireCompte(/*QWidget *parent = 0*/);
-    /*QString getNom();
-    QString getMdp();
-    QString getMdpConfirmation();
-    QString getAdresse();*/
+    explicit GestionnaireCompte();
     void verification(QString nom, QString mdp, QString mdpConfirmation, QString mail);
     ~GestionnaireCompte();
-
-/*private:
-    Ui::GestionnaireCompte *ui;*/
 
 };
 
