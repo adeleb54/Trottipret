@@ -61,8 +61,7 @@ void GestionnaireCompte::verification(){
     {
 
         Utilisateur user(nom.toStdString(), mail.toStdString(), mdp.toStdString());
-        qDebug() << query.exec("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (1, 'coco', 'oui', 'channel', 5);") << endl;
-        /*query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
+        query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
         query.bindValue(":iduser", 1);
         query.bindValue(":nom", nom);
         query.bindValue(":mail", mail);
@@ -71,13 +70,13 @@ void GestionnaireCompte::verification(){
         cout << query.lastQuery().toStdString() << endl;
         cout << query.isValid() << endl;
         qDebug()<< query.exec() << "  " << query.lastError() <<endl;
-        query.finish();*/
+        query.finish();
         query.prepare("SELECT * FROM Utilisateur");
         if(query.exec())
         {
-            int i = 0;
             while(query.next())
             {
+                int i = 0;
                 while(i < 5){
                 QString nameRow = query.value(i).toString();//Récupère le résultat de la requête
                 cout << "résultat : " << nameRow.toStdString() << endl;

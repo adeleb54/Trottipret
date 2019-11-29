@@ -35,3 +35,6 @@ HEADERS += \
 
 FORMS += \
     gestionnaireCompte.ui
+
+RESOURCES += \
+    ressource.qrc
