@@ -3,23 +3,23 @@
 
 using namespace std;
 
-GestionnaireCompte::GestionnaireCompte(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::GestionnaireCompte){
+GestionnaireCompte::GestionnaireCompte()
+    /*QMainWindow(parent),
+    ui(new Ui::GestionnaireCompte)*/{
     db.setDatabaseName("./sqlite.db");
 
     if(!db.open()){
         cout << "Je ne suis pas connecté à " << db.hostName().toStdString() << endl;
     }
 
-    ui->setupUi(this);
+    /*ui->setupUi(this);
     ui->lineEdit_mdp->setEchoMode(QLineEdit ::Password);
     ui ->lineEdit_confirmMdp->setEchoMode(QLineEdit::Password);
 
-    QObject::connect(ui->button_valider, SIGNAL(clicked()), this, SLOT(verification()));
+    QObject::connect(ui->button_valider, SIGNAL(clicked()), this, SLOT(verification()));*/
 }
 
-QString GestionnaireCompte::getNom(){
+/*QString GestionnaireCompte::getNom(){
     return ui->lineEdit_nom->text();
 }
 
@@ -33,14 +33,14 @@ QString GestionnaireCompte::getMdpConfirmation(){
 
 QString GestionnaireCompte::getAdresse(){
     return ui->lineEdit_mail->text();
-}
+}*/
 
-void GestionnaireCompte::verification(){
+void GestionnaireCompte::verification(QString nom, QString mdp, QString mdpConfirmation, QString mail){
     QMessageBox alert;
-    QString nom = getNom();
+    /*QString nom = getNom();
     QString mdp = getMdp();
     QString mdpConfirmation = getMdpConfirmation();
-    QString mail = getAdresse();
+    QString mail = getAdresse();*/
 
     QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z][-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z][.])[a-zA-Z]{2,6}$");
 
@@ -71,5 +71,5 @@ void GestionnaireCompte::verification(){
 
 GestionnaireCompte::~GestionnaireCompte()
 {
-    delete ui;
+    //delete ui;
 }

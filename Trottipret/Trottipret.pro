@@ -26,13 +26,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    gestionnaireCompte.cpp
+    gestionnaireCompte.cpp \
+    inscription.cpp
 
 HEADERS += \
-    gestionnaireCompte.h
+    gestionnaireCompte.h \
+    inscription.h
 
 FORMS += \
-    gestionnaireCompte.ui
+    gestionnaireCompte.ui \
+    inscription.ui
 
 RESOURCES += \
     ressource.qrc
