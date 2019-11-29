@@ -8,19 +8,10 @@ using namespace std;
 GestionnaireCompte::GestionnaireCompte(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GestionnaireCompte){
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("./sqlite.db");
 
     if(!db.open()){
         cout << "Je ne suis pas connecté à " << db.hostName().toStdString() << endl;
-    }
-
-    QSqlQuery query;
-
-    query.exec("SELECT * FROM Utilisateur");
-
-    while (query.next()){
-        cout << query.value(0).toString().toStdString() << endl;
     }
 
     ui->setupUi(this);
@@ -30,38 +21,36 @@ GestionnaireCompte::GestionnaireCompte(QWidget *parent) :
     QObject::connect(ui->button_valider, SIGNAL(clicked()), this, SLOT(verification()));
 }
 
-string GestionnaireCompte::getNom(){
-    return ui->lineEdit_nom->text().toStdString();
+QString GestionnaireCompte::getNom(){
+    return ui->lineEdit_nom->text();
 }
 
-string GestionnaireCompte::getMdp(){
-    return ui->lineEdit_mdp->text().toStdString();
+QString GestionnaireCompte::getMdp(){
+    return ui->lineEdit_mdp->text();
 }
 
-string GestionnaireCompte::getMdpConfirmation(){
-    return ui->lineEdit_confirmMdp->text().toStdString();
+QString GestionnaireCompte::getMdpConfirmation(){
+    return ui->lineEdit_confirmMdp->text();
 }
 
-string GestionnaireCompte::getAdresse(){
-    return ui->lineEdit_mail->text().toStdString();
+QString GestionnaireCompte::getAdresse(){
+    return ui->lineEdit_mail->text();
 }
 
 void GestionnaireCompte::verification(){
     QMessageBox alert;
-    string nom = getNom();
-    string mdp = getMdp();
-    string mdpConfirmation = getMdpConfirmation();
-    string adresse = getAdresse();
-
-    QString mail = ui->lineEdit_mail->text();
+    QString nom = getNom();
+    QString mdp = getMdp();
+    QString mdpConfirmation = getMdpConfirmation();
+    QString mail = getAdresse();
 
     QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z][-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z][.])[a-zA-Z]{2,6}$");
 
 
-    if (nom.empty() || mdp.empty() || mdpConfirmation.empty() || adresse.empty()){
+    if (nom.toStdString().empty() || mdp.toStdString().empty() || mdpConfirmation.toStdString().empty() || mail.toStdString().empty()){
         alert.setText("Erreur tous les champs ne sont pas rempli");
         alert.exec();
-    }else if (mdp != mdpConfirmation){
+    }else if (mdp.toStdString() != mdpConfirmation.toStdString()){
         alert.setText("Erreur le mdp et le mdp de onfirmation sont différents");
         alert.exec();
     }else if(!regex.match(mail).hasMatch())
@@ -70,10 +59,35 @@ void GestionnaireCompte::verification(){
         alert.exec();
     }else
     {
-        Utilisateur user(nom, adresse, mdp);
-        utilisateurs.insert(make_pair(adresse, &user));
 
-        utilisateurs.at(mail.toStdString())->toString();
+        Utilisateur user(nom.toStdString(), mail.toStdString(), mdp.toStdString());
+        qDebug() << query.exec("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (1, 'coco', 'oui', 'channel', 5);") << endl;
+        /*query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
+        query.bindValue(":iduser", 1);
+        query.bindValue(":nom", nom);
+        query.bindValue(":mail", mail);
+        query.bindValue(":mdp", mdp);
+        query.bindValue(":notation", 5);
+        cout << query.lastQuery().toStdString() << endl;
+        cout << query.isValid() << endl;
+        qDebug()<< query.exec() << "  " << query.lastError() <<endl;
+        query.finish();*/
+        query.prepare("SELECT * FROM Utilisateur");
+        if(query.exec())
+        {
+            int i = 0;
+            while(query.next())
+            {
+                while(i < 5){
+                QString nameRow = query.value(i).toString();//Récupère le résultat de la requête
+                cout << "résultat : " << nameRow.toStdString() << endl;
+                i++;
+                }
+            }
+        }else{
+            cout << "faux" << endl;
+        }
+        //query.finish();
     }
 }
 

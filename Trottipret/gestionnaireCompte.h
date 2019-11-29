@@ -8,6 +8,7 @@
 #include <iostream>
 #include <map>
 #include "utilisateur.h"
+#include <QtSql>
 
 
 namespace Ui {
@@ -17,13 +18,14 @@ class GestionnaireCompte;
 class GestionnaireCompte : public QMainWindow
 {
     Q_OBJECT
-
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    QSqlQuery query;
 public:
     explicit GestionnaireCompte(QWidget *parent = 0);
-    std::string getNom();
-    std::string getMdp();
-    std::string getMdpConfirmation();
-    std::string getAdresse();
+    QString getNom();
+    QString getMdp();
+    QString getMdpConfirmation();
+    QString getAdresse();
     ~GestionnaireCompte();
 
 private:
