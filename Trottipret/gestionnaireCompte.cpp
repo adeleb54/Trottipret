@@ -1,5 +1,4 @@
 #include "gestionnaireCompte.h"
-#include "ui_gestionnaireCompte.h"
 
 using namespace std;
 
