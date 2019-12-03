@@ -39,11 +39,14 @@ void GestionnaireCompte::verification(QString nom, QString mdp, QString mdpConfi
         alert.exec();
     }else{
 
-        query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, PASSWORD(:mdp), :notation);");
+        QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
+
+        query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
         query.bindValue(":iduser", id);
         query.bindValue(":nom", nom);
         query.bindValue(":mail", mail);
-        query.bindValue(":mdp", mdp);
+        query.bindValue(":mdp", mdpHash.toHex());
+         qDebug() << query.lastError() << endl;
         query.bindValue(":notation", 5);
         qDebug() << query.exec() << endl;
         cout << query.lastQuery().toStdString() << endl;
