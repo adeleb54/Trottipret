@@ -11,7 +11,6 @@ using namespace std;
  * @brief GestionnaireCompte::GestionnaireCompte Le constructeur de l'objet GestionnaireCompte
  */
 GestionnaireCompte::GestionnaireCompte(){
-    db.setDatabaseName("./sqlite.db");
 
     if(!db.open()){
         cout << "Je ne suis pas connecté à " << db.hostName().toStdString() << endl;

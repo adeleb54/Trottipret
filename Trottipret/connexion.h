@@ -39,6 +39,10 @@ public:
      */
     ~Connexion();
 
+
+private slots:
+    void on_LinkButton_inscription_clicked();
+
 private:
     Ui::Connexion *ui;
 
@@ -52,6 +56,11 @@ private slots:
      * @brief Renvoie l'utilisateur sur la page d'inscription
      */
     void inscription();
+
+    /**
+     * @brief ferme l'application
+     */
+    void close();
 };
 
 #endif // CONNEXION_H

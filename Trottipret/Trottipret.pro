@@ -25,12 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    connexiondb.cpp \
         main.cpp \
     gestionnaireCompte.cpp \
     inscription.cpp \
     connexion.cpp
 
 HEADERS += \
+    connexiondb.h \
     gestionnaireCompte.h \
     inscription.h \
     connexion.h

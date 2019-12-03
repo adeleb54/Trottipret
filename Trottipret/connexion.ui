@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="connexion">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -77,7 +77,7 @@
      <x>50</x>
      <y>180</y>
      <width>491</width>
-     <height>81</height>
+     <height>150</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -136,11 +136,24 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
+  <widget class="QPushButton" name="inscription">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>350</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inscription</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>connexion</sender>
    <signal>accepted()</signal>
    <receiver>Connexion</receiver>
    <slot>accept()</slot>
@@ -156,7 +169,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>connexion</sender>
    <signal>rejected()</signal>
    <receiver>Connexion</receiver>
    <slot>reject()</slot>
