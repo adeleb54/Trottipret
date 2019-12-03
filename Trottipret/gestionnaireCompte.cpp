@@ -1,12 +1,15 @@
 #include "gestionnaireCompte.h"
 
 /**
- * Modification : changement de l'attribut mdp
+ * Modification : chiffrement de l'attribut mdp
+ * Rennomage de la méthode verification en inscription
  */
 
 using namespace std;
 
-
+/**
+ * @brief GestionnaireCompte::GestionnaireCompte Le constructeur de l'objet GestionnaireCompte
+ */
 GestionnaireCompte::GestionnaireCompte(){
     db.setDatabaseName("./sqlite.db");
 
@@ -21,17 +24,24 @@ GestionnaireCompte::GestionnaireCompte(){
     }
 }
 
-void GestionnaireCompte::verification(QString nom, QString mdp, QString mdpConfirmation, QString mail){
+/**
+ * @brief GestionnaireCompte::inscription Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est inscrit. Sinon il doit de nouveau entrer les champs
+ * @param nom Nom entré par l'utilisateur
+ * @param mdp Mot de passe entré par l'utilisateur
+ * @param mdpConfirmation Confirmation du mot de passe entrée par l'utilisateur
+ * @param mail Adresse mail entrée par l'utilisateur
+ */
+void GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfirmation, QString mail){
     QMessageBox alert;
 
     QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z][-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z][.])[a-zA-Z]{2,6}$");
 
-
+    /*Vérification que tous les champs sont corrects*/
     if (nom.toStdString().empty() || mdp.toStdString().empty() || mdpConfirmation.toStdString().empty() || mail.toStdString().empty()){
         alert.setText("Erreur tous les champs ne sont pas rempli");
         alert.exec();
     }else if (mdp.toStdString() != mdpConfirmation.toStdString()){
-        alert.setText("Erreur le mdp et le mdp de onfirmation sont différents");
+        alert.setText("Erreur le mdp et le mdp de confirmation sont différents");
         alert.exec();
     }else if(!regex.match(mail).hasMatch())
     {
@@ -39,6 +49,7 @@ void GestionnaireCompte::verification(QString nom, QString mdp, QString mdpConfi
         alert.exec();
     }else{
 
+        /*Si tout est bon on peut entrer le nouvel utilisateur dans la base de données*/
         QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
 
         query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
@@ -46,17 +57,27 @@ void GestionnaireCompte::verification(QString nom, QString mdp, QString mdpConfi
         query.bindValue(":nom", nom);
         query.bindValue(":mail", mail);
         query.bindValue(":mdp", mdpHash.toHex());
-         qDebug() << query.lastError() << endl;
         query.bindValue(":notation", 5);
-        qDebug() << query.exec() << endl;
-        cout << query.lastQuery().toStdString() << endl;
-        qDebug() << query.lastError() << endl;
+        query.exec();
         query.finish();
         id++;
-        cout << "Ajouté !" << endl;
     }
 }
 
+/**
+ * @brief GestionnaireCompte::connexion Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est connecté. Sinon il doit de nouveau entrer les champs
+ * @param mail Adresse mail entrée par l'utilisateur
+ * @param mdp Mot de passe entré par l'utilisateur
+ */
+void GestionnaireCompte::connexion(QString mail, QString mdp){
+    query.prepare("SELECT mail FROM Utilisateur WHERE mail=':mail'");
+    query.bindValue(":mail", mail);
+    cout << query.exec() << endl;
+}
+
+/**
+ * @brief GestionnaireCompte::~GestionnaireCompteDétruit l'obej GesstionnaireDeCompte
+ */
 GestionnaireCompte::~GestionnaireCompte()
 {
 }
