@@ -30,8 +30,9 @@ GestionnaireCompte::GestionnaireCompte(){
  * @param mdpConfirmation Confirmation du mot de passe entrée par l'utilisateur
  * @param mail Adresse mail entrée par l'utilisateur
  */
-void GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfirmation, QString mail){
+bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfirmation, QString mail){
     QMessageBox alert;
+    bool test = false;
 
 
     QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z][-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z][.])[a-zA-Z]{2,6}$");
@@ -61,7 +62,9 @@ void GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
         query.exec();
         query.finish();
         id++;
+        test = true;
     }
+    return test;
 }
 
 /**
