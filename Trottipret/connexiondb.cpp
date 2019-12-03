@@ -4,6 +4,6 @@ using namespace std;
 
 ConnexionDB::ConnexionDB()
 {
-    db.setDatabaseName("./sqlite.db");
+    db.setDatabaseName("sqlite.db");
     bool ok = db.open();
 }

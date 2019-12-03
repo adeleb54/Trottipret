@@ -33,6 +33,7 @@ GestionnaireCompte::GestionnaireCompte(){
 void GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfirmation, QString mail){
     QMessageBox alert;
 
+
     QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z][-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z][.])[a-zA-Z]{2,6}$");
 
     /*Vérification que tous les champs sont corrects*/

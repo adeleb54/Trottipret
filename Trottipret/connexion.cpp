@@ -28,8 +28,8 @@ void Connexion::verification(){
 void Connexion::inscription(){
     std::cout << "Un truc dedans" << std::endl;
     Inscription inscription;
+    this->hide();
     inscription.exec();
-    this->
 }
 
 void Connexion::close(){
