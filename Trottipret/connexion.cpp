@@ -11,6 +11,7 @@ Connexion::Connexion(QWidget *parent) :
     QObject::connect(ui->inscription, SIGNAL(clicked()), this, SLOT(inscription()));
     QObject::connect(ui->connexion, SIGNAL(accepted()), this, SLOT(verification()));
     QObject::connect(ui->connexion, SIGNAL(rejected()), this, SLOT(close()));
+
 }
 
 QString Connexion::getMail(){
@@ -28,8 +29,8 @@ void Connexion::verification(){
 void Connexion::inscription(){
     std::cout << "Un truc dedans" << std::endl;
     Inscription inscription;
+    //this->hide();
     inscription.exec();
-    this->
 }
 
 void Connexion::close(){
@@ -39,12 +40,4 @@ void Connexion::close(){
 Connexion::~Connexion()
 {
     delete ui;
-}
-
-
-
-void Connexion::on_LinkButton_inscription_clicked()
-{
-    Inscription inscript(this);
-    inscript.exec();
 }
