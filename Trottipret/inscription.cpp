@@ -20,7 +20,9 @@ Inscription::Inscription(QWidget *parent) :
  * @brief Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est inscrit. Sinon il doit de nouveau entrer les champs
  */
 void Inscription::verification() {
-   gest.inscription(getNom(), getMdp(), getMdpConfirmation(), getAdresse());
+   if (gest.inscription(getNom(), getMdp(), getMdpConfirmation(), getAdresse())){
+    this->close();
+   }
 }
 
 /**

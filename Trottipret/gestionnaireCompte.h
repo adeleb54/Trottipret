@@ -29,7 +29,7 @@ public:
      * @param mdpConfirmation Confirmation du mot de passe entrée par l'utilisateur
      * @param mail Adresse mail entrée par l'utilisateur
      */
-    void inscription(QString nom, QString mdp, QString mdpConfirmation, QString mail);
+    bool inscription(QString nom, QString mdp, QString mdpConfirmation, QString mail);
 
     /**
      * @brief GestionnaireCompte::connexion Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est connecté. Sinon il doit de nouveau entrer les champs
