@@ -26,6 +26,10 @@ public:
     getMdp();*/
     ~Connexion();
 
+
+private slots:
+    void on_LinkButton_inscription_clicked();
+
 private:
     Ui::Connexion *ui;
 

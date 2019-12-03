@@ -8,7 +8,6 @@ using namespace std;
 
 
 GestionnaireCompte::GestionnaireCompte(){
-    db.setDatabaseName("./sqlite.db");
 
     if(!db.open()){
         cout << "Je ne suis pas connecté à " << db.hostName().toStdString() << endl;

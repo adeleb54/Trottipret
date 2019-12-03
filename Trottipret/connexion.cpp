@@ -1,5 +1,6 @@
 #include "connexion.h"
 #include "ui_connexion.h"
+#include "inscription.h"
 
 Connexion::Connexion(QWidget *parent) :
     QDialog(parent),
@@ -11,4 +12,12 @@ Connexion::Connexion(QWidget *parent) :
 Connexion::~Connexion()
 {
     delete ui;
+}
+
+
+
+void Connexion::on_LinkButton_inscription_clicked()
+{
+    Inscription inscript(this);
+    QWidget::connect(ui->pushButton_connexion, SIGNAL(clicked()), &inscript, SLOT(exec()));
 }

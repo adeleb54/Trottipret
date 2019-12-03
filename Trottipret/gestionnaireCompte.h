@@ -15,7 +15,7 @@ class GestionnaireCompte;
 
 class GestionnaireCompte
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    QSqlDatabase db = QSqlDatabase::database();
     QSqlQuery query;
     int id = 0;
 public:
