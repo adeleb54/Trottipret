@@ -22,8 +22,21 @@ class Connexion : public QDialog
 
 public:
     explicit Connexion(QWidget *parent = 0);
-    /*getMail();
-    getMdp();*/
+    /**
+     * @brief Récupère l'adresse mail entrée
+     * @return QString l'adresse mail entrée au format QString
+     */
+    getMail();
+
+    /**
+     * @brief Récupère le mot de passe entré
+     * @return QString le mot de passe au format QString
+     */
+    getMdp();
+
+    /**
+     * @brief Détruit l'objet Inscription
+     */
     ~Connexion();
 
 
@@ -33,8 +46,16 @@ private slots:
 private:
     Ui::Connexion *ui;
 
-/*private slots:
-    void verification();*/
+private slots:
+    /**
+     * @brief Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est connecté. Sinon il doit de nouveau entrer les champs
+     */
+    void verification();
+
+    /**
+     * @brief Renvoie l'utilisateur sur la page d'inscription
+     */
+    void inscirption();
 };
 
 #endif // CONNEXION_H

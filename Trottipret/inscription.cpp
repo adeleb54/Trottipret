@@ -18,52 +18,46 @@ Inscription::Inscription(QWidget *parent) :
 }
 
 /**
- * @brief
- *
+ * @brief Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est inscrit. Sinon il doit de nouveau entrer les champs
  */
 void Inscription::verification() {
-   gest.verification(getNom(), getMdp(), getMdpConfirmation(), getAdresse());
+   gest.inscription(getNom(), getMdp(), getMdpConfirmation(), getAdresse());
 }
 
 /**
- * @brief
- *
- * @return QString
+ * @brief Récupère le nom entré
+ * @return QString le nom au format QString
  */
 QString Inscription::getNom(){
     return ui->lineEdit_nom->text();
 }
 
 /**
- * @brief
- *
- * @return QString
+ * @brief Récupère le mot de passe entré
+ * @return QString le mot de passe au format QString
  */
 QString Inscription::getMdp(){
     return ui->lineEdit_mdp->text();
 }
 
 /**
- * @brief
- *
- * @return QString
+ * @brief Récupère la confirmation du mot de passe entré
+ * @return QString la confirmation du mot de passe au format QString
  */
 QString Inscription::getMdpConfirmation(){
     return ui->lineEdit_confirmMdp->text();
 }
 
 /**
- * @brief
- *
- * @return QString
+ * @brief Récupère l'adresse mail entrée
+ * @return QString l'adresse mail entrée au format QString
  */
 QString Inscription::getAdresse(){
     return ui->lineEdit_mail->text();
 }
 
 /**
- * @brief
- *
+ * @brief Détruit l'objet Inscription
  */
 Inscription::~Inscription()
 {
