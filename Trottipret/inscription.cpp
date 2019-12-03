@@ -3,7 +3,6 @@
 
 /**
  * @brief
- *
  * @param parent
  */
 Inscription::Inscription(QWidget *parent) :
