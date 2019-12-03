@@ -26,13 +26,13 @@ public:
      * @brief Récupère l'adresse mail entrée
      * @return QString l'adresse mail entrée au format QString
      */
-    getMail();
+    QString getMail();
 
     /**
      * @brief Récupère le mot de passe entré
      * @return QString le mot de passe au format QString
      */
-    getMdp();
+    QString getMdp();
 
     /**
      * @brief Détruit l'objet Inscription
@@ -55,7 +55,12 @@ private slots:
     /**
      * @brief Renvoie l'utilisateur sur la page d'inscription
      */
-    void inscirption();
+    void inscription();
+
+    /**
+     * @brief ferme l'application
+     */
+    void close();
 };
 
 #endif // CONNEXION_H

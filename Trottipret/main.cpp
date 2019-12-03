@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
 
     ConnexionDB connexionDB;
 
-    Inscription inscrpt;
-    inscrpt.show();
+    Connexion connect;
+    connect.show();
 
     return a.exec();
 }
