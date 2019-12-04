@@ -63,6 +63,8 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
         query.finish();
         id++;
         test = true;
+        alert.setText("L'utilisateur : " + nom + " a été ajouter");
+        alert.exec();
     }
     return test;
 }
