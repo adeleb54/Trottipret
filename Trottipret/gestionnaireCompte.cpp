@@ -85,6 +85,13 @@ void GestionnaireCompte::connexion(QString mail, QString mdp){
         msgBox.exec();
     }
 
+
+    if (!query.first()) {
+        QMessageBox msgBox;
+        msgBox.setInformativeText("L'utilisateur n'existe pas");
+        msgBox.exec();
+    }
+
     cout << query.value(1).toString().toStdString() << endl;
 
 

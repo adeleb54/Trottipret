@@ -10,8 +10,7 @@ Connexion::Connexion(QWidget *parent) :
     ui->lineEdit_mdp->setEchoMode(QLineEdit::Password);
 
     QObject::connect(ui->inscription, SIGNAL(clicked()), this, SLOT(inscription()));
-    QObject::connect(ui->connexion, SIGNAL(accepted()), this, SLOT(verification()));
-    QObject::connect(ui->connexion, SIGNAL(rejected()), this, SLOT(close()));
+    QObject::connect(ui->pushButton_connexion, SIGNAL(clicked()), this, SLOT(verification()));
 
 }
 
