@@ -75,9 +75,19 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
  * @param mdp Mot de passe entré par l'utilisateur
  */
 void GestionnaireCompte::connexion(QString mail, QString mdp){
-    query.prepare("SELECT mail FROM Utilisateur WHERE mail=':mail'");
-    query.bindValue(":mail", mail);
-    cout << query.exec() << endl;
+    query.prepare("SELECT iduser, nom, mdp FROM Utilisateur WHERE mail=?");
+    query.addBindValue(mail);
+
+    /* Vérifie si la requête a bien été exécutée */
+    if(!query.exec()) {
+        QMessageBox msgBox;
+        msgBox.setInformativeText("Erreur lors de l'éxecution de la requête");
+        msgBox.exec();
+    }
+
+    cout << query.value(1).toString().toStdString() << endl;
+
+
 }
 
 /**
