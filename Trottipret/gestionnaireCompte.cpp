@@ -85,14 +85,29 @@ void GestionnaireCompte::connexion(QString mail, QString mdp){
         msgBox.exec();
     }
 
-
+    /* Vérifie si on a un résultat */
     if (!query.first()) {
         QMessageBox msgBox;
-        msgBox.setInformativeText("L'utilisateur n'existe pas");
+        msgBox.setInformativeText("L'utilisateur n'existe pas.");
+        msgBox.exec();
+    }
+
+    /* On chiffre le mdp saisi par l'utilisateur */
+    QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
+    QString mdpUser = mdpHash.toHex();
+
+    QString mdpBd = query.value(2).toString();
+
+    /* Vérifie si le mdp saisi par l'utilisateur correspond à celui dans la BD */
+    if (mdpUser.compare(mdpBd)) {
+        QMessageBox msgBox;
+        msgBox.setInformativeText("L'adresse e-mail et le mot de passe ne correspondent pas.");
         msgBox.exec();
     }
 
     cout << query.value(1).toString().toStdString() << endl;
+
+
 
 
 }
