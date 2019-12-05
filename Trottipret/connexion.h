@@ -54,7 +54,7 @@ private slots:
     void inscription();
 
     /**
-     * @brief ferme l'application
+     * @brief Ferme l'application
      */
     void close();
 };
