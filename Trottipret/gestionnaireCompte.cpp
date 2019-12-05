@@ -74,40 +74,43 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
  * @param mail Adresse mail entrée par l'utilisateur
  * @param mdp Mot de passe entré par l'utilisateur
  */
-void GestionnaireCompte::connexion(QString mail, QString mdp){
+bool GestionnaireCompte::connexion(QString mail, QString mdp){
+    bool est_connecte = true;
     query.prepare("SELECT iduser, nom, mdp FROM Utilisateur WHERE mail=?");
     query.addBindValue(mail);
+
+    /* On chiffre le mdp saisi par l'utilisateur */
+    QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
+    QString mdpUser = mdpHash.toHex();
 
     /* Vérifie si la requête a bien été exécutée */
     if(!query.exec()) {
         QMessageBox msgBox;
         msgBox.setInformativeText("Erreur lors de l'éxecution de la requête");
         msgBox.exec();
+        est_connecte = false;
     }
 
-    /* Vérifie si on a un résultat */
-    if (!query.first()) {
+    if (!query.first()) { /* Vérifie si on a un résultat */
         QMessageBox msgBox;
         msgBox.setInformativeText("L'utilisateur n'existe pas.");
         msgBox.exec();
+        est_connecte = false;
     }
-
-    /* On chiffre le mdp saisi par l'utilisateur */
-    QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
-    QString mdpUser = mdpHash.toHex();
 
     QString mdpBd = query.value(2).toString();
 
     /* Vérifie si le mdp saisi par l'utilisateur correspond à celui dans la BD */
     if (mdpUser.compare(mdpBd)) {
         QMessageBox msgBox;
-        msgBox.setInformativeText("L'adresse e-mail et le mot de passe ne correspondent pas.");
+        msgBox.setInformativeText("Le mot de passe ne correspond pas.");
         msgBox.exec();
+        est_connecte = false;
+    }else{
+        cout << "L'utilisateur : '" << query.value(1).toString().toStdString() << "' est bien connecté" << endl;
     }
 
-    cout << query.value(1).toString().toStdString() << endl;
-
-
+    return est_connecte;
 
 
 }

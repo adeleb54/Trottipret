@@ -23,17 +23,18 @@ QString Connexion::getMdp(){
 }
 
 void Connexion::verification(){
-    gest.connexion(getMail(), getMdp());
+    if(gest.connexion(getMail(), getMdp())){
+        this->hide();
+    }
 }
 
 void Connexion::inscription(){
     Inscription inscription;
-    this->hide();
     inscription.exec();
 }
 
 void Connexion::close(){
-    std::cout << "fermer app" << std::endl;
+    std::cout << "Fermeture de l'application" << std::endl;
 }
 
 Connexion::~Connexion()
