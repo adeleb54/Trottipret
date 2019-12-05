@@ -24,13 +24,13 @@ public:
     explicit Connexion(QWidget *parent = 0);
     /**
      * @brief Récupère l'adresse mail entrée
-     * @return QString l'adresse mail entrée au format QString
+     * @return QString l'adresse mail entrée
      */
     QString getMail();
 
     /**
      * @brief Récupère le mot de passe entré
-     * @return QString le mot de passe au format QString
+     * @return QString le mot de passe
      */
     QString getMdp();
 
@@ -54,7 +54,7 @@ private slots:
     void inscription();
 
     /**
-     * @brief ferme l'application
+     * @brief Ferme l'application
      */
     void close();
 };

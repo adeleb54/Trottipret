@@ -39,6 +39,7 @@ public:
      * @return QString l'adresse mail entrée au format QString
      */
     QString getAdresse();
+
     /**
      * @brief Détruit l'objet Inscription
      */
