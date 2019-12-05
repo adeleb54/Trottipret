@@ -34,6 +34,7 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
     QMessageBox alert;
     bool test = false;
 
+
     QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z][-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z][.])[a-zA-Z]{2,6}$");
 
     /*Vérification que tous les champs sont corrects*/
@@ -62,6 +63,8 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
         query.finish();
         id++;
         test = true;
+        alert.setText("L'utilisateur : " + nom + " a été ajouter");
+        alert.exec();
     }
     return test;
 }
@@ -72,9 +75,41 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
  * @param mdp Mot de passe entré par l'utilisateur
  */
 void GestionnaireCompte::connexion(QString mail, QString mdp){
-    query.prepare("SELECT mail FROM Utilisateur WHERE mail=':mail'");
-    query.bindValue(":mail", mail);
-    cout << query.exec() << endl;
+    query.prepare("SELECT iduser, nom, mdp FROM Utilisateur WHERE mail=?");
+    query.addBindValue(mail);
+
+    /* Vérifie si la requête a bien été exécutée */
+    if(!query.exec()) {
+        QMessageBox msgBox;
+        msgBox.setInformativeText("Erreur lors de l'éxecution de la requête");
+        msgBox.exec();
+    }
+
+    /* Vérifie si on a un résultat */
+    if (!query.first()) {
+        QMessageBox msgBox;
+        msgBox.setInformativeText("L'utilisateur n'existe pas.");
+        msgBox.exec();
+    }
+
+    /* On chiffre le mdp saisi par l'utilisateur */
+    QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
+    QString mdpUser = mdpHash.toHex();
+
+    QString mdpBd = query.value(2).toString();
+
+    /* Vérifie si le mdp saisi par l'utilisateur correspond à celui dans la BD */
+    if (mdpUser.compare(mdpBd)) {
+        QMessageBox msgBox;
+        msgBox.setInformativeText("L'adresse e-mail et le mot de passe ne correspondent pas.");
+        msgBox.exec();
+    }
+
+    cout << query.value(1).toString().toStdString() << endl;
+
+
+
+
 }
 
 /**

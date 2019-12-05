@@ -7,29 +7,28 @@ Connexion::Connexion(QWidget *parent) :
     ui(new Ui::Connexion)
 {
     ui->setupUi(this);
+    ui->lineEdit_mdp->setEchoMode(QLineEdit::Password);
 
     QObject::connect(ui->inscription, SIGNAL(clicked()), this, SLOT(inscription()));
-    QObject::connect(ui->connexion, SIGNAL(accepted()), this, SLOT(verification()));
-    QObject::connect(ui->connexion, SIGNAL(rejected()), this, SLOT(close()));
+    QObject::connect(ui->pushButton_connexion, SIGNAL(clicked()), this, SLOT(verification()));
 
 }
 
 QString Connexion::getMail(){
-    return NULL;
+    return ui-> lineEdit_mail->text();
 }
 
 QString Connexion::getMdp(){
-    return NULL;
+    return ui->lineEdit_mdp->text();
 }
 
 void Connexion::verification(){
-    std::cout << "un autre truc dedans" << std::endl;
+    gest.connexion(getMail(), getMdp());
 }
 
 void Connexion::inscription(){
-    std::cout << "Un truc dedans" << std::endl;
     Inscription inscription;
-    //this->hide();
+    this->hide();
     inscription.exec();
 }
 
