@@ -29,17 +29,23 @@ SOURCES += \
         main.cpp \
     gestionnaireCompte.cpp \
     inscription.cpp \
-    connexion.cpp
+    connexion.cpp \
+    trottipret.cpp \
+    moncompte.cpp
 
 HEADERS += \
     connexiondb.h \
     gestionnaireCompte.h \
     inscription.h \
-    connexion.h
+    connexion.h \
+    trottipret.h \
+    moncompte.h
 
 FORMS += \
     inscription.ui \
-    connexion.ui
+    connexion.ui \
+    trottipret.ui \
+    moncompte.ui
 
 RESOURCES += \
     ressource.qrc

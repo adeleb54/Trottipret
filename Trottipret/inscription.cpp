@@ -2,8 +2,12 @@
 #include "ui_inscription.h"
 
 /**
- * @brief
- * @param parent
+  * @author Roberge-Mentec Corentin, Vernevaut Corentin
+  */
+
+/**
+ * @brief Constructeur de la classe Inscription
+ * @param parent le QWidget de la classe Inscription
  */
 Inscription::Inscription(QWidget *parent) :
     QDialog(parent),

@@ -8,16 +8,27 @@
 #include <iostream>
 #include "gestionnaireCompte.h"
 
+/**
+  * @author Roberge-Mentec Corentin, Vernevaut Corentin
+  */
+
 namespace Ui {
 class Inscription;
 }
 
+/**
+ * @brief La classe Inscription
+ */
 class Inscription : public QDialog
 {
     Q_OBJECT
     GestionnaireCompte gest;
 
 public:
+    /**
+     * @brief Constructeur de la classe Inscription
+     * @param parent le QWidget de la classe Inscription
+     */
     explicit Inscription(QWidget *parent = 0);
     /**
      * @brief Récupère le nom entré

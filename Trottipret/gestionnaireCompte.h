@@ -8,12 +8,15 @@
 #include <iostream>
 #include <QtSql>
 
+/**
+ * @authors Barbier Adèle, Vernevaut Corentin, Roberge-Mentec Corentin
+ */
 
 namespace Ui {
 class GestionnaireCompte;
 }
 /**
- * @brief GestionnaireCompte::GestionnaireCompte Le constructeur de l'objet GestionnaireCompte
+ * @brief La classe GestionnaireCompte
  */
 class GestionnaireCompte
 {
@@ -21,6 +24,9 @@ class GestionnaireCompte
     QSqlQuery query;
     int id = 0;
 public:
+    /**
+     * @brief GestionnaireCompte::GestionnaireCompte Le constructeur de l'objet GestionnaireCompte
+     */
     explicit GestionnaireCompte();
     /**
      * @brief GestionnaireCompte::inscription Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est inscrit. Sinon il doit de nouveau entrer les champs
@@ -37,11 +43,6 @@ public:
      * @param mdp Mot de passe entré par l'utilisateur
      */
     bool connexion(QString mail, QString mdp);
-
-    /**
-     * @brief GestionnaireCompte::~GestionnaireCompteDétruit l'obej GesstionnaireDeCompte
-     */
-    ~GestionnaireCompte();
 
 };
 

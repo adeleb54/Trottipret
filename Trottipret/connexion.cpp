@@ -1,11 +1,22 @@
 #include "connexion.h"
 #include "ui_connexion.h"
 #include "inscription.h"
+#include "moncompte.h"
 
+/**
+ * @authors Roberge-Mentec Corentin, Vernevaut Corentin, Barbier Adèle
+ * Ajout de l'état de connexion d'un utilisateur
+ */
+
+/**
+ * @brief Constructeur de la classe Connexion
+ * @param parent le QWidget de la classe Connexion
+ */
 Connexion::Connexion(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Connexion)
 {
+    is_connected = false;
     ui->setupUi(this);
     ui->lineEdit_mdp->setEchoMode(QLineEdit::Password);
 
@@ -35,6 +46,7 @@ QString Connexion::getMdp(){
  */
 void Connexion::verification(){
     if(gest.connexion(getMail(), getMdp())){
+        is_connected = true;
         this->hide();
     }
 }
@@ -45,6 +57,14 @@ void Connexion::verification(){
 void Connexion::inscription(){
     Inscription inscription;
     inscription.exec();
+}
+
+/**
+ * @brief Permet de savoir si un utilisateur s'est connecté à l'application ou non
+ * @return l'état de la connexion d'un utilisateur
+ */
+bool Connexion::isConnected(){
+    return is_connected;
 }
 
 /**

@@ -6,7 +6,7 @@
 using namespace std;
 
 /**
- * @brief ConnexionDB::ConnexionDB
+ * @brief Constructeur de la classe ConnexionDB, instancie la base de données
  */
 ConnexionDB::ConnexionDB()
 {

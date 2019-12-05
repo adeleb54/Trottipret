@@ -1,6 +1,7 @@
 #include "gestionnaireCompte.h"
 
 /**
+ * @authors Barbier Adèle, Vernevaut Corentin, Roberge-Mentec Corentin
  * Modification : chiffrement de l'attribut mdp
  * Rennomage de la méthode verification en inscription
  * Ajout vérification que le mail est entré n'est pas déjà utilisé
@@ -115,7 +116,6 @@ bool GestionnaireCompte::connexion(QString mail, QString mdp){
         msgBox.exec();
         est_connecte = false;
     }
-    else{
 
     QString mdpBd = query.value(2).toString();
 
@@ -132,11 +132,4 @@ bool GestionnaireCompte::connexion(QString mail, QString mdp){
     return est_connecte;
 
 
-}
-
-/**
- * @brief GestionnaireCompte::~GestionnaireCompteDétruit l'obej GesstionnaireDeCompte
- */
-GestionnaireCompte::~GestionnaireCompte()
-{
 }
