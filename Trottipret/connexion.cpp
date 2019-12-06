@@ -58,6 +58,9 @@ void Connexion::verification(){
 void Connexion::inscription(){
     Inscription inscription;
     inscription.exec();
+    if(inscription.isRegister()){
+        this->show();
+    }
 }
 
 /**
