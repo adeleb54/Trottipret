@@ -3,6 +3,7 @@
 #include "connexion.h"
 #include "connexiondb.h"
 #include <QApplication>
+#include "trottipretfenprincipale.h"
 
 using namespace std;
 
@@ -12,8 +13,9 @@ int main(int argc, char *argv[])
 
     ConnexionDB connexionDB;
 
-    Connexion connect;
-    connect.show();
+    TrottipretFenPrincipale fenPrincipale;
+    fenPrincipale.show();
+
 
     return a.exec();
 }

@@ -36,7 +36,7 @@ public:
      * @param mail Adresse mail entrée par l'utilisateur
      * @param mdp Mot de passe entré par l'utilisateur
      */
-    void connexion(QString mail, QString mdp);
+    bool connexion(QString mail, QString mdp);
 
     /**
      * @brief GestionnaireCompte::~GestionnaireCompteDétruit l'obej GesstionnaireDeCompte

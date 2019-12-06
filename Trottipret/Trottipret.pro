@@ -29,13 +29,15 @@ SOURCES += \
         main.cpp \
     gestionnaireCompte.cpp \
     inscription.cpp \
-    connexion.cpp
+    connexion.cpp \
+    trottipretfenprincipale.cpp
 
 HEADERS += \
     connexiondb.h \
     gestionnaireCompte.h \
     inscription.h \
-    connexion.h
+    connexion.h \
+    trottipretfenprincipale.h
 
 FORMS += \
     inscription.ui \

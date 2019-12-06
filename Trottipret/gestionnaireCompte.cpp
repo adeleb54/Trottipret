@@ -74,7 +74,9 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
  * @param mail Adresse mail entrée par l'utilisateur
  * @param mdp Mot de passe entré par l'utilisateur
  */
-void GestionnaireCompte::connexion(QString mail, QString mdp){
+bool GestionnaireCompte::connexion(QString mail, QString mdp){
+    bool connexion = false;
+
     query.prepare("SELECT iduser, nom, mdp FROM Utilisateur WHERE mail=?");
     query.addBindValue(mail);
 
@@ -83,6 +85,7 @@ void GestionnaireCompte::connexion(QString mail, QString mdp){
         QMessageBox msgBox;
         msgBox.setInformativeText("Erreur lors de l'éxecution de la requête");
         msgBox.exec();
+        return false;
     }
 
     /* Vérifie si on a un résultat */
@@ -90,12 +93,14 @@ void GestionnaireCompte::connexion(QString mail, QString mdp){
         QMessageBox msgBox;
         msgBox.setInformativeText("L'utilisateur n'existe pas.");
         msgBox.exec();
+        return false;
     }
 
     /* On chiffre le mdp saisi par l'utilisateur */
     QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
     QString mdpUser = mdpHash.toHex();
 
+    /* On récupère le mdp chiffré de la bd */
     QString mdpBd = query.value(2).toString();
 
     /* Vérifie si le mdp saisi par l'utilisateur correspond à celui dans la BD */
@@ -103,12 +108,14 @@ void GestionnaireCompte::connexion(QString mail, QString mdp){
         QMessageBox msgBox;
         msgBox.setInformativeText("L'adresse e-mail et le mot de passe ne correspondent pas.");
         msgBox.exec();
+    } else {
+        connexion = true;
     }
 
     cout << query.value(1).toString().toStdString() << endl;
 
 
-
+    return connexion;
 
 }
 

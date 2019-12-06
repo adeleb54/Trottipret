@@ -1,6 +1,7 @@
 #include "connexion.h"
 #include "ui_connexion.h"
 #include "inscription.h"
+#include "trottipretfenprincipale.h"
 
 Connexion::Connexion(QWidget *parent) :
     QDialog(parent),
@@ -23,7 +24,11 @@ QString Connexion::getMdp(){
 }
 
 void Connexion::verification(){
-    gest.connexion(getMail(), getMdp());
+    if(gest.connexion(getMail(), getMdp())) {
+        this->close();
+        TrottipretFenPrincipale fen;
+        fen.show();
+    }
 }
 
 void Connexion::inscription(){
