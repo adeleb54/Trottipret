@@ -1,9 +1,13 @@
-#include "gestionnaireCompte.h"
-#include "inscription.h"
-#include "connexion.h"
+//#include "connexion.h"
+#include "trottipret.h"
 #include "connexiondb.h"
 #include <QApplication>
 #include "trottipretfenprincipale.h"
+
+/**
+ * @author Barbier Adèle
+ * Modification de la fenêtre principale
+ */
 
 using namespace std;
 
@@ -13,9 +17,8 @@ int main(int argc, char *argv[])
 
     ConnexionDB connexionDB;
 
-    TrottipretFenPrincipale fenPrincipale;
-    fenPrincipale.show();
-
+    Trottipret trottipret;
+    trottipret.executer();
 
     return a.exec();
 }

@@ -4,9 +4,19 @@
 #include <iostream>
 #include <QtSql>
 
+/**
+ * @author Vernevaut Corentin
+ */
+
+/**
+ * @brief La classe ConnexionDB
+ */
 class ConnexionDB
 {
 public:
+    /**
+     * @brief Constructeur de la classe ConnexionDB, instancie la base de données
+     */
     ConnexionDB();
 
 private:

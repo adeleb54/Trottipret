@@ -1,8 +1,10 @@
 #include "gestionnaireCompte.h"
 
 /**
+ * @authors Barbier Adèle, Vernevaut Corentin, Roberge-Mentec Corentin
  * Modification : chiffrement de l'attribut mdp
  * Rennomage de la méthode verification en inscription
+ * Ajout vérification que le mail est entré n'est pas déjà utilisé
  */
 
 using namespace std;
@@ -12,9 +14,7 @@ using namespace std;
  */
 GestionnaireCompte::GestionnaireCompte(){
 
-    if(!db.open()){
-        cout << "Je ne suis pas connecté à " << db.hostName().toStdString() << endl;
-    }
+    /*On récupère le dernier id entré pour pouvoir l'incrémenter*/
     query.prepare("SELECT idUser FROM Utilisateur");
     query.exec();
     while(query.next()){
@@ -25,6 +25,7 @@ GestionnaireCompte::GestionnaireCompte(){
 
 /**
  * @brief GestionnaireCompte::inscription Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est inscrit. Sinon il doit de nouveau entrer les champs
+ * @return true si l'inscription s'est bien faite
  * @param nom Nom entré par l'utilisateur
  * @param mdp Mot de passe entré par l'utilisateur
  * @param mdpConfirmation Confirmation du mot de passe entrée par l'utilisateur
@@ -50,21 +51,39 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
         alert.exec();
     }else{
 
-        /*Si tout est bon on peut entrer le nouvel utilisateur dans la base de données*/
-        QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
+        bool memeMail = false;
 
-        query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
-        query.bindValue(":iduser", id);
-        query.bindValue(":nom", nom);
-        query.bindValue(":mail", mail);
-        query.bindValue(":mdp", mdpHash.toHex());
-        query.bindValue(":notation", 5);
+        /*On récupère tous les mails*/
+        query.prepare("SELECT mail FROM Utilisateur");
         query.exec();
+        while(query.next() && !memeMail){
+            if(mail == query.value(0).toString()){
+                memeMail = true;
+            }
+        }
         query.finish();
-        id++;
-        test = true;
-        alert.setText("L'utilisateur : " + nom + " a été ajouter");
-        alert.exec();
+
+        if(!memeMail){
+            /*Si tout est bon on peut entrer le nouvel utilisateur dans la base de données*/
+            QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
+
+            query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
+            query.bindValue(":iduser", id);
+            query.bindValue(":nom", nom);
+            query.bindValue(":mail", mail);
+            query.bindValue(":mdp", mdpHash.toHex());
+            query.bindValue(":notation", 5);
+            query.exec();
+            query.finish();
+            id++;
+            test = true;
+            alert.setText("L'utilisateur : " + nom + " a été ajouté");
+            alert.exec();
+        }
+        else{
+            alert.setText("Email déjà utilisé");
+            alert.exec();
+        }
     }
     return test;
 }
@@ -75,30 +94,29 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
  * @param mdp Mot de passe entré par l'utilisateur
  */
 bool GestionnaireCompte::connexion(QString mail, QString mdp){
-    bool connexion = false;
 
+    bool est_connecte = true;
     query.prepare("SELECT iduser, nom, mdp FROM Utilisateur WHERE mail=?");
     query.addBindValue(mail);
+
+    /* On chiffre le mdp saisi par l'utilisateur */
+    QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
+    QString mdpUser = mdpHash.toHex();
 
     /* Vérifie si la requête a bien été exécutée */
     if(!query.exec()) {
         QMessageBox msgBox;
         msgBox.setInformativeText("Erreur lors de l'éxecution de la requête");
         msgBox.exec();
-        return false;
+        est_connecte = false;
     }
 
-    /* Vérifie si on a un résultat */
-    if (!query.first()) {
+    if (!query.first()) { /* Vérifie si on a un résultat */
         QMessageBox msgBox;
         msgBox.setInformativeText("L'utilisateur n'existe pas.");
         msgBox.exec();
-        return false;
+        est_connecte = false;
     }
-
-    /* On chiffre le mdp saisi par l'utilisateur */
-    QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
-    QString mdpUser = mdpHash.toHex();
 
     /* On récupère le mdp chiffré de la bd */
     QString mdpBd = query.value(2).toString();
@@ -106,22 +124,15 @@ bool GestionnaireCompte::connexion(QString mail, QString mdp){
     /* Vérifie si le mdp saisi par l'utilisateur correspond à celui dans la BD */
     if (mdpUser.compare(mdpBd)) {
         QMessageBox msgBox;
-        msgBox.setInformativeText("L'adresse e-mail et le mot de passe ne correspondent pas.");
+        msgBox.setInformativeText("Le mot de passe ne correspond pas.");
         msgBox.exec();
-    } else {
-        connexion = true;
+
+        est_connecte = false;
+    }else{
+        cout << "L'utilisateur : '" << query.value(1).toString().toStdString() << "' est bien connecté" << endl;
     }
 
-    cout << query.value(1).toString().toStdString() << endl;
+    return est_connecte;
 
 
-    return connexion;
-
-}
-
-/**
- * @brief GestionnaireCompte::~GestionnaireCompteDétruit l'obej GesstionnaireDeCompte
- */
-GestionnaireCompte::~GestionnaireCompte()
-{
 }
