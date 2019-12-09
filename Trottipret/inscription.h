@@ -22,7 +22,6 @@ class Inscription;
 class Inscription : public QDialog
 {
     Q_OBJECT
-    GestionnaireCompte gest;
 
 public:
     /**
@@ -57,6 +56,7 @@ public:
     ~Inscription();
 
 private:
+    GestionnaireCompte gest;
     Ui::Inscription *ui;
 
 private slots:

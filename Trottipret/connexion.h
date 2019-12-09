@@ -21,15 +21,14 @@ class Connexion;
 class Connexion : public QDialog
 {
     Q_OBJECT
-    GestionnaireCompte gest;
-    bool is_connected;
+
 
 public:
     /**
      * @brief Constructeur de la classe Connexion
      * @param parent le QWidget de la classe Connexion
      */
-    explicit Connexion(QWidget *parent = 0);
+    explicit Connexion(GestionnaireCompte gest, QWidget *parent = 0);
     /**
      * @brief Récupère l'adresse mail entrée
      * @return QString l'adresse mail entrée
@@ -43,6 +42,13 @@ public:
     QString getMdp();
 
     /**
+     * @brief Retourne l'identifiant de l'utilisateur actuellement connecté
+     * @return l'identifiant de l'utilisateur
+     */
+    int getId();
+
+
+    /**
      * @brief Retourne le booléen permettant de savoir si de l'utilisateur est connecté ou non
      * @return l'état de connexion de l'utilisateur
      */
@@ -54,6 +60,9 @@ public:
     ~Connexion();
 
 private:
+    GestionnaireCompte gest;
+    bool is_connected;
+    int id;
     Ui::Connexion *ui;
 
 private slots:

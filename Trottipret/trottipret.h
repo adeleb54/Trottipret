@@ -2,6 +2,7 @@
 #define TROTTIPRET_H
 
 #include <QMainWindow>
+#include "gestionnaireCompte.h"
 
 /**
  * @author Roberge-Mentec Corentin
@@ -37,7 +38,9 @@ public:
 
 
 private:
+    int id;
     Ui::Trottipret *ui;
+    GestionnaireCompte gest;
 
 private slots:
     /**

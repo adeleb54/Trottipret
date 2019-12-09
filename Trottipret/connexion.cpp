@@ -12,10 +12,11 @@
  * @brief Constructeur de la classe Connexion
  * @param parent le QWidget de la classe Connexion
  */
-Connexion::Connexion(QWidget *parent) :
+Connexion::Connexion(GestionnaireCompte gest, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Connexion)
 {
+    this->gest = gest;
     is_connected = false;
     ui->setupUi(this);
     ui->lineEdit_mdp->setEchoMode(QLineEdit::Password);
@@ -47,6 +48,7 @@ QString Connexion::getMdp(){
 void Connexion::verification(){
     if(gest.connexion(getMail(), getMdp())){
         is_connected = true;
+        id=gest.getId();
         this->hide();
     }
 }
@@ -72,6 +74,14 @@ bool Connexion::isConnected(){
  */
 void Connexion::close(){
     std::cout << "Fermeture de l'application" << std::endl;
+}
+
+/**
+ * @brief Retourne l'identifiant de l'utilisateur actuellement connecté
+ * @return l'identifiant de l'utilisateur
+ */
+int Connexion::getId(){
+    return id;
 }
 
 /**

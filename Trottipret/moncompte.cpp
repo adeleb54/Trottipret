@@ -11,15 +11,23 @@ using namespace std;
  * @brief Constructeur de la classe MonCompte
  * @param parent le QWidget de la classe MonCompte
  */
-MonCompte::MonCompte(QWidget *parent) :
+MonCompte::MonCompte(int id, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MonCompte)
 {
     ui->setupUi(this);
+    this->id = id;
+    ui->nomChamps->setText(gest.getNom(id));
+    cout << gest.getNom(id).toStdString() << endl;
+    //ui->mailChamps->setText(gest.getAdresse(id));
+    QMessageBox alert;
+    alert.setText(gest.getAdresse(id));
+    //alert.exec();
 
     QObject::connect(ui->enregistrer, SIGNAL(clicked()), this, SLOT(verification()));
     QObject::connect(ui->retour, SIGNAL(clicked()), this, SLOT(retour()));
 }
+
 
 /**
  * @brief verification des informations à modifier
@@ -28,7 +36,7 @@ void MonCompte::verification(){
     if (ui->ancienMdpChamps->text() != "" && ui->nouveauMdpChamps->text() != "" && ui->confirmationNouveauMDp->text() != ""){
         cout << "modification prise en compte oui" << endl;
     }else{
-        cout << "Hé dis dont t'as pas tout rempli enculé" << endl;
+        cout << "Hé dis dont t'as pas tout rempli enculé·e" << endl;
     }
 }
 
@@ -77,6 +85,14 @@ QString MonCompte::getMdp(){
  */
 QString MonCompte::getMdpConfirmationMdp(){
     return ui->confirmationNouveauMDp->text();
+}
+
+/**
+ * @brief setId Initialisation de l'identifiant de l'utilisateur connecté
+ * @param id L'identifiant
+ */
+void MonCompte::setId(int id){
+    this->id=id;
 }
 
 /**

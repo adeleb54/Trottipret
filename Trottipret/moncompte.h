@@ -4,11 +4,15 @@
 #include <QDialog>
 #include <string.h>
 #include <iostream>
+#include "gestionnaireCompte.h"
+
+/**
+ * @author Corentin Roberge-Mentec, Adèle Barbier
+ */
 
 namespace Ui {
 class MonCompte;
 }
-
 /**
  * @brief La classe MonCompte
  */
@@ -21,7 +25,7 @@ public:
      * @brief Constructeur de la classe MonCompte
      * @param parent le QWidget de la classe MonCompte
      */
-    explicit MonCompte(QWidget *parent = 0);
+    explicit MonCompte(int id, QWidget *parent = 0);
 
     /**
      * @brief Permet d'accéder au nom entré par l'utilisateur
@@ -54,12 +58,20 @@ public:
     QString getMdpConfirmationMdp();
 
     /**
+     * @brief setId Initialisation de l'identifiant de l'utilisateur connecté
+     * @param id L'identifiant
+     */
+    void setId(int id);
+
+    /**
      * Destructeur de l'objet MonCompte
      */
     ~MonCompte();
 
 private:
     Ui::MonCompte *ui;
+    GestionnaireCompte gest;
+    int id;
 
 private slots:
     /**
