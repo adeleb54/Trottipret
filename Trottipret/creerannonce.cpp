@@ -18,7 +18,7 @@ CreerAnnonce::CreerAnnonce()
  * @brief Méthode de création de l'annonce concernant une trottinette
  */
 void CreerAnnonce::creationAnnonce(QString nom, QString description, QString retour, QString retrait, int taille, double prix, QDate dateDebLoca, QDate dateFinLoca, QTime heureDebLoca, QTime heureFinLoca){
-    QSqlQuery query;
+    /*QSqlQuery query;
     query.prepare("INSERT INTO Trottinette(idTrot, nom, , mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
     query.bindValue(":iduser", id);
     query.bindValue(":nom", nom);
@@ -26,5 +26,5 @@ void CreerAnnonce::creationAnnonce(QString nom, QString description, QString ret
     query.bindValue(":mdp", mdpHash.toHex());
     query.bindValue(":notation", 5);
     query.exec();
-    query.finish();
+    query.finish();*/
 }

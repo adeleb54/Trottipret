@@ -32,9 +32,9 @@ MonCompte::MonCompte(int id, QWidget *parent) :
  */
 void MonCompte::verification(){
     if (ui->ancienMdpChamps->text() != "" && ui->nouveauMdpChamps->text() != "" && ui->confirmationNouveauMDp->text() != ""){
-        cout << "modification prise en compte oui" << endl;
+        cout << "modification prise en compte" << endl;
     }else{
-        cout << "Hé dis dont t'as pas tout rempli enculé·e" << endl;
+        cout << "Tout les champs de mot de passe ne sont pas remplis!" << endl;
     }
 }
 
