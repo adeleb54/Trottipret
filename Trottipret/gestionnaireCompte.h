@@ -1,7 +1,6 @@
 #ifndef GESTIONNAIRECOMPTE_H
 #define GESTIONNAIRECOMPTE_H
 
-#include <QMainWindow>
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <string.h>

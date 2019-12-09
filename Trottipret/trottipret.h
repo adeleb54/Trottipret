@@ -44,6 +44,8 @@ private slots:
      * @brief Envoies vers la page de consultation du compte
      */
     void monCompte();
+
+    void ajouterAnnonce();
 };
 
 
