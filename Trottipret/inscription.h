@@ -22,6 +22,7 @@ class Inscription;
 class Inscription : public QDialog
 {
     Q_OBJECT
+    bool is_register;
 
 public:
     /**
@@ -49,6 +50,12 @@ public:
      * @return QString l'adresse mail entrée au format QString
      */
     QString getAdresse();
+
+    /**
+     * @brief Retourne le booléen permettant de savoir si l'utilisateur s'est inscrit ou non
+     * @return l'état d'inscription de l'utilisateur
+     */
+    bool isRegister();
 
     /**
      * @brief Détruit l'objet Inscription

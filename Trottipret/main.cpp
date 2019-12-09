@@ -2,6 +2,7 @@
 #include "trottipret.h"
 #include "connexiondb.h"
 #include <QApplication>
+#include "trottipretfenprincipale.h"
 
 /**
  * @author Barbier Adèle

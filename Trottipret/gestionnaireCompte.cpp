@@ -117,6 +117,7 @@ bool GestionnaireCompte::connexion(QString mailParam, QString mdp){
         est_connecte = false;
     }
 
+    /* On récupère le mdp chiffré de la bd */
     QString mdpBd = query.value(2).toString();
 
     /* Vérifie si le mdp saisi par l'utilisateur correspond à celui dans la BD */
@@ -124,6 +125,7 @@ bool GestionnaireCompte::connexion(QString mailParam, QString mdp){
         QMessageBox msgBox;
         msgBox.setInformativeText("Le mot de passe ne correspond pas.");
         msgBox.exec();
+
         est_connecte = false;
     }else{
         id = query.value(0).toInt();

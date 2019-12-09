@@ -46,6 +46,7 @@ QString Connexion::getMdp(){
  * @brief Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est connecté. Sinon il doit de nouveau entrer les champs
  */
 void Connexion::verification(){
+
     if(gest.connexion(getMail(), getMdp())){
         is_connected = true;
         id=gest.getId();
@@ -59,6 +60,9 @@ void Connexion::verification(){
 void Connexion::inscription(){
     Inscription inscription;
     inscription.exec();
+    if(inscription.isRegister()){
+        this->show();
+    }
 }
 
 /**
