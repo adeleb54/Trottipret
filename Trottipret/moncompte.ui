@@ -140,10 +140,18 @@
      </widget>
     </item>
     <item row="2" column="2">
-     <widget class="QLineEdit" name="ancienMdpChamps"/>
+     <widget class="QLineEdit" name="ancienMdpChamps">
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
     </item>
     <item row="4" column="2">
-     <widget class="QLineEdit" name="confirmationNouveauMDp"/>
+     <widget class="QLineEdit" name="confirmationNouveauMDp">
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
     </item>
     <item row="4" column="1">
      <widget class="QLabel" name="nomCompte_3">
@@ -153,7 +161,11 @@
      </widget>
     </item>
     <item row="3" column="2">
-     <widget class="QLineEdit" name="nouveauMdpChamps"/>
+     <widget class="QLineEdit" name="nouveauMdpChamps">
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

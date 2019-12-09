@@ -4,6 +4,7 @@
 #include "moncompte.h"
 #include "ajouterannonce.h"
 
+using namespace std;
 /**
  * @author Roberge-Mentec Corentin
  */
@@ -26,20 +27,24 @@ Trottipret::Trottipret(QWidget *parent) :
  */
 void Trottipret::executer(){
     this->hide();
-    Connexion connexion;
+    Connexion connexion(gest);
     connexion.exec();
     if(connexion.isConnected()){
         this->show();
+        id = connexion.getId();
+        cout << gest.getAdresse(id).toStdString() << endl;
+        cout << id << endl;
     }else{
         this->~Trottipret();
     }
+
 }
 
 /**
  * @brief Méthode d'accès au compte utilisateur de Trottipret
  */
 void Trottipret::monCompte(){
-    MonCompte monCompte;
+    MonCompte monCompte(id);
     this->hide();
     monCompte.exec();
     this->show();

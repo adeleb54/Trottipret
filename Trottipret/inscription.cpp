@@ -25,7 +25,8 @@ Inscription::Inscription(QWidget *parent) :
  */
 void Inscription::verification() {
    if (gest.inscription(getNom(), getMdp(), getMdpConfirmation(), getAdresse())){
-    this->close();
+       is_register = true;
+       this->hide();
    }
 }
 
@@ -59,6 +60,14 @@ QString Inscription::getMdpConfirmation(){
  */
 QString Inscription::getAdresse(){
     return ui->lineEdit_mail->text();
+}
+
+/**
+ * @brief Permet de savoir si un utilisateur s'est inscrit à l'application ou non
+ * @return l'état d'inscription d'un utilisateur
+ */
+bool Inscription::isRegister(){
+    return is_register;
 }
 
 /**

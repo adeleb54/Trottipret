@@ -15,11 +15,9 @@ using namespace std;
 GestionnaireCompte::GestionnaireCompte(){
 
     /*On récupère le dernier id entré pour pouvoir l'incrémenter*/
-    query.prepare("SELECT idUser FROM Utilisateur");
-    query.exec();
+    query.exec("SELECT idUser FROM Utilisateur");
     while(query.next()){
         id= query.value(0).toInt();
-        id++;
     }
 }
 
@@ -35,6 +33,8 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
     QMessageBox alert;
     bool test = false;
 
+
+    id++;
 
     QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z][-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z][.])[a-zA-Z]{2,6}$");
 
@@ -67,7 +67,7 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
             /*Si tout est bon on peut entrer le nouvel utilisateur dans la base de données*/
             QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
 
-            query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation);");
+            query.prepare("INSERT INTO Utilisateur(iduser, nom, mail, mdp, notation) VALUES (:iduser, :nom, :mail, :mdp, :notation)");
             query.bindValue(":iduser", id);
             query.bindValue(":nom", nom);
             query.bindValue(":mail", mail);
@@ -93,10 +93,10 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
  * @param mail Adresse mail entrée par l'utilisateur
  * @param mdp Mot de passe entré par l'utilisateur
  */
-bool GestionnaireCompte::connexion(QString mail, QString mdp){
+bool GestionnaireCompte::connexion(QString mailParam, QString mdp){
     bool est_connecte = true;
     query.prepare("SELECT iduser, nom, mdp FROM Utilisateur WHERE mail=?");
-    query.addBindValue(mail);
+    query.addBindValue(mailParam);
 
     /* On chiffre le mdp saisi par l'utilisateur */
     QByteArray mdpHash = QCryptographicHash::hash(mdp.toUtf8(), QCryptographicHash::Sha1);
@@ -117,6 +117,7 @@ bool GestionnaireCompte::connexion(QString mail, QString mdp){
         est_connecte = false;
     }
 
+    /* On récupère le mdp chiffré de la bd */
     QString mdpBd = query.value(2).toString();
 
     /* Vérifie si le mdp saisi par l'utilisateur correspond à celui dans la BD */
@@ -124,12 +125,68 @@ bool GestionnaireCompte::connexion(QString mail, QString mdp){
         QMessageBox msgBox;
         msgBox.setInformativeText("Le mot de passe ne correspond pas.");
         msgBox.exec();
+
         est_connecte = false;
     }else{
+        id = query.value(0).toInt();
         cout << "L'utilisateur : '" << query.value(1).toString().toStdString() << "' est bien connecté" << endl;
     }
 
     return est_connecte;
+}
 
+/**
+ * @brief getId Retourne l'identifiant de l'utilisateur actuellement connecté
+ * @return L'identifiant unique de l'utilisateur
+ */
+int GestionnaireCompte::getId(){
+    return id;
+}
 
+/**
+ * @brief getNom Retourne le nom associé à l'identifiant donné
+ * @param id Identifiant de l'utilisateur
+ * @return Le nom de l'utilisateur
+ */
+QString GestionnaireCompte::getNom(int id){
+    QString nom = "";
+    query.prepare("SELECT nom FROM Utilisateur WHERE idUser=:id");
+    query.bindValue(":id", id);
+    query.exec();
+    if(query.next()){
+        nom = query.value(0).toString();
+    }
+    return nom;
+}
+
+/**
+ * @brief getAdresse Retourne l'adresse mail associée à l'identifiant donné
+ * @param id Identifiant de l'utilisateur
+ * @return L'adresse mail de l'utilisateur
+ */
+QString GestionnaireCompte::getAdresse(int id){
+    QString mail = "";
+    query.prepare("SELECT mail FROM Utilisateur WHERE idUser=:id;");
+    query.bindValue(":id", id);
+    query.exec();
+    if(query.next()){
+        mail = query.value(0).toString();
+    }
+    return mail;
+}
+
+/**
+ * @brief getMdp Retourne le mot de passe chiffré associé à l'identifiant donné
+ * @param id Identifiant de l'utilisateur
+ * @return Le mot de passe chiffré de l'utilisateur
+ */
+QString GestionnaireCompte::getMdp(int id){
+    QString mdp = "";
+    query.prepare("SELECT mdp FROM Utilisateur WHERE id=:id");
+    query.bindValue(":id", id);
+    query.exec();
+    if(query.next()){
+        mdp = query.value(0).toString();
+    }
+    return mdp;
 }
