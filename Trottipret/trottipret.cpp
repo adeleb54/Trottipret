@@ -31,6 +31,7 @@ void Trottipret::executer(){
         this->show();
         id = connexion.getId();
         cout << gest.getAdresse(id).toStdString() << endl;
+        cout << id << endl;
     }else{
         this->~Trottipret();
     }

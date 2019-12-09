@@ -18,9 +18,7 @@ GestionnaireCompte::GestionnaireCompte(){
     query.exec("SELECT idUser FROM Utilisateur");
     while(query.next()){
         id= query.value(0).toInt();
-        id++;
     }
-    mail = "valeur init";
 }
 
 /**
@@ -35,6 +33,8 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
     QMessageBox alert;
     bool test = false;
 
+
+    id++;
 
     QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z][-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z][.])[a-zA-Z]{2,6}$");
 
@@ -126,14 +126,10 @@ bool GestionnaireCompte::connexion(QString mailParam, QString mdp){
         msgBox.exec();
         est_connecte = false;
     }else{
+        id = query.value(0).toInt();
         cout << "L'utilisateur : '" << query.value(1).toString().toStdString() << "' est bien connecté" << endl;
     }
 
-    setMail(mailParam);
-    QMessageBox alert;
-    cout << "id : " << id << endl;
-    alert.setText("Connexion : " + this->mail);
-    alert.exec();
     return est_connecte;
 }
 
@@ -152,7 +148,7 @@ int GestionnaireCompte::getId(){
  */
 QString GestionnaireCompte::getNom(int id){
     QString nom = "";
-    query.prepare("SELECT nom FROM Utilisateur WHERE id=:id");
+    query.prepare("SELECT nom FROM Utilisateur WHERE idUser=:id");
     query.bindValue(":id", id);
     query.exec();
     if(query.next()){
@@ -167,10 +163,13 @@ QString GestionnaireCompte::getNom(int id){
  * @return L'adresse mail de l'utilisateur
  */
 QString GestionnaireCompte::getAdresse(int id){
-    QMessageBox alert;
-    cout << "id : " << this->id << endl;
-    alert.setText("getAdresse : " + this->mail);
-    alert.exec();
+    QString mail = "";
+    query.prepare("SELECT mail FROM Utilisateur WHERE idUser=:id;");
+    query.bindValue(":id", id);
+    query.exec();
+    if(query.next()){
+        mail = query.value(0).toString();
+    }
     return mail;
 }
 
@@ -188,12 +187,4 @@ QString GestionnaireCompte::getMdp(int id){
         mdp = query.value(0).toString();
     }
     return mdp;
-}
-
-
-void GestionnaireCompte::setMail(QString mailParam){
-    this->mail = mailParam;
-    QMessageBox alert;
-    alert.setText("setMail : " + this->mail);
-    alert.exec();
 }

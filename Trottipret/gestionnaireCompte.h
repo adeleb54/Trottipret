@@ -68,12 +68,9 @@ public:
      */
     QString getMdp(int id);
 
-    void setMail(QString mailParam);
-
 private :
     QSqlQuery query;
     int id = 0;
-    QString mail;
 };
 
 

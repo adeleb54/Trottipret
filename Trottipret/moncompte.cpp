@@ -17,12 +17,10 @@ MonCompte::MonCompte(int id, QWidget *parent) :
 {
     ui->setupUi(this);
     this->id = id;
-    ui->nomChamps->setText(gest.getNom(id));
-    cout << gest.getNom(id).toStdString() << endl;
-    //ui->mailChamps->setText(gest.getAdresse(id));
-    QMessageBox alert;
-    alert.setText(gest.getAdresse(id));
-    //alert.exec();
+    const QString& mail = gest.getAdresse(id);
+    const QString& nom = gest.getNom(id);
+    ui->mailChamps->setText(mail);
+    ui->nomChamps->setText(nom);
 
     QObject::connect(ui->enregistrer, SIGNAL(clicked()), this, SLOT(verification()));
     QObject::connect(ui->retour, SIGNAL(clicked()), this, SLOT(retour()));
