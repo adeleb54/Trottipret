@@ -67,6 +67,11 @@ public:
      */
     QString getMdp(int id);
 
+    /**
+     * @brief Suppression du compte
+     */
+    void supprimer(int id);
+
 private :
     QSqlQuery query;
     int id = 0;
