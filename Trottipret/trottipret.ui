@@ -46,8 +46,20 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="ajouterAnnonce"/>
+   </widget>
+   <addaction name="menuMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="ajouterAnnonce">
+   <property name="text">
+    <string>Ajouter une annonce</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

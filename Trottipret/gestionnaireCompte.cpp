@@ -38,7 +38,7 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
 
     QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z][-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z][.])[a-zA-Z]{2,6}$");
 
-    /*Vérification que tous les champs sont corrects*/
+    /*Vérification que tous les champs sont corrCAects*/
     if (nom.toStdString().empty() || mdp.toStdString().empty() || mdpConfirmation.toStdString().empty() || mail.toStdString().empty()){
         alert.setText("Erreur tous les champs ne sont pas rempli");
         alert.exec();

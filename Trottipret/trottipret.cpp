@@ -2,6 +2,7 @@
 #include "ui_trottipret.h"
 #include "connexion.h"
 #include "moncompte.h"
+#include "ajouterannonce.h"
 
 using namespace std;
 /**
@@ -18,6 +19,7 @@ Trottipret::Trottipret(QWidget *parent) :
 {
     ui->setupUi(this);
     QObject::connect(ui->monCompte, SIGNAL(clicked()), this, SLOT(monCompte()));
+    QObject::connect(ui->ajouterAnnonce, SIGNAL(triggered(bool)), this, SLOT(ajouterAnnonce()));
 }
 
 /**
@@ -46,6 +48,14 @@ void Trottipret::monCompte(){
     this->hide();
     monCompte.exec();
     this->show();
+}
+
+/**
+ * @brief Lance la fenêtre d'ajout d'annonce
+ */
+void Trottipret::ajouterAnnonce(){
+    AjouterAnnonce ajoutAnnonce;
+    ajoutAnnonce.exec();
 }
 
 /**

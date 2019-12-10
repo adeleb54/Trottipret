@@ -31,7 +31,10 @@ SOURCES += \
     inscription.cpp \
     connexion.cpp \
     trottipret.cpp \
-    moncompte.cpp
+    moncompte.cpp \
+    ajouterannonce.cpp \
+    creerannonce.cpp \
+    ajoutertrottinette.cpp
 
 HEADERS += \
     connexiondb.h \
@@ -39,13 +42,17 @@ HEADERS += \
     inscription.h \
     connexion.h \
     trottipret.h \
-    moncompte.h
+    moncompte.h \
+    ajouterannonce.h \
+    creerannonce.h \
+    ajoutertrottinette.h
 
 FORMS += \
     inscription.ui \
     connexion.ui \
     trottipret.ui \
-    moncompte.ui
+    moncompte.ui \
+    ajouterannonce.ui
 
 RESOURCES += \
     ressource.qrc
