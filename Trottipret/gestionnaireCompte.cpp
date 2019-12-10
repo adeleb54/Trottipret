@@ -182,11 +182,22 @@ QString GestionnaireCompte::getAdresse(int id){
  */
 QString GestionnaireCompte::getMdp(int id){
     QString mdp = "";
-    query.prepare("SELECT mdp FROM Utilisateur WHERE id=:id");
+    query.prepare("SELECT mdp FROM Utilisateur WHERE idUser=:id");
     query.bindValue(":id", id);
     query.exec();
     if(query.next()){
         mdp = query.value(0).toString();
     }
     return mdp;
+}
+
+/**
+ * @brief Suppression du compte
+ */
+void GestionnaireCompte::supprimer(int id){
+    query.prepare("DELETE FROM Utilisateur WHERE idUser=:id");
+    query.bindValue(":id", id);
+    if(query.exec()){
+    cout << "L'utilisateur " << id << " a été supprimé" << endl;
+    }
 }

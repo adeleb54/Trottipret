@@ -84,6 +84,11 @@ private slots:
      */
     void retour();
 
+    /**
+     * @brief Suppression du compte
+     */
+    void supprimer();
+
 };
 
 #endif // MONCOMPTE_H

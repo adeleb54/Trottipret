@@ -24,6 +24,7 @@ MonCompte::MonCompte(int id, QWidget *parent) :
 
     QObject::connect(ui->enregistrer, SIGNAL(clicked()), this, SLOT(verification()));
     QObject::connect(ui->retour, SIGNAL(clicked()), this, SLOT(retour()));
+    QObject::connect(ui->supprimer, SIGNAL(clicked()), this, SLOT(supprimer()));
 }
 
 
@@ -32,9 +33,9 @@ MonCompte::MonCompte(int id, QWidget *parent) :
  */
 void MonCompte::verification(){
     if (ui->ancienMdpChamps->text() != "" && ui->nouveauMdpChamps->text() != "" && ui->confirmationNouveauMDp->text() != ""){
-        cout << "modification prise en compte oui" << endl;
+        cout << "Modification prise en compte" << endl;
     }else{
-        cout << "Hé dis dont t'as pas tout rempli enculé·e" << endl;
+        cout << "Veuillez remplir tous les champs pour modifier le mot de passe" << endl;
     }
 }
 
@@ -91,6 +92,14 @@ QString MonCompte::getMdpConfirmationMdp(){
  */
 void MonCompte::setId(int id){
     this->id=id;
+}
+
+/**
+ * @brief Suppression du compte
+ */
+void MonCompte::supprimer(){
+    gest.supprimer(id);
+    this->close();
 }
 
 /**
