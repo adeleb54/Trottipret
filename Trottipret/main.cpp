@@ -1,5 +1,5 @@
 //#include "connexion.h"
-#include "trottipret.h"
+#include "PrincipaleFen.h"
 #include "connexiondb.h"
 #include <QApplication>
 #include "trottipretfenprincipale.h"
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
     ConnexionDB connexionDB;
 
-    Trottipret trottipret;
+    PrincipaleFen trottipret;
     trottipret.executer();
 
     return a.exec();

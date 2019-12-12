@@ -1,8 +1,8 @@
-#include "trottipret.h"
-#include "ui_trottipret.h"
-#include "connexion.h"
-#include "moncompte.h"
-#include "ajouterannonce.h"
+#include "PrincipaleFen.h"
+#include "ui_principaleFen.h"
+#include "connexionUtilisateurFen.h"
+#include "compteUtilisateurFen.h"
+#include "annonceFen.h"
 
 using namespace std;
 /**
@@ -13,9 +13,9 @@ using namespace std;
  * @brief Constructeur de la classe Trottipret
  * @param parent le QWidget de la classe Trottipret
  */
-Trottipret::Trottipret(QWidget *parent) :
+PrincipaleFen::PrincipaleFen(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::Trottipret)
+    ui(new Ui::PrincipaleFen)
 {
     ui->setupUi(this);
     QObject::connect(ui->monCompte, SIGNAL(clicked()), this, SLOT(monCompte()));
@@ -25,9 +25,9 @@ Trottipret::Trottipret(QWidget *parent) :
 /**
  * @brief Lancement de l'application Trottipret
  */
-void Trottipret::executer(){
+void PrincipaleFen::executer(){
     this->hide();
-    Connexion connexion(gest);
+    ConnexionUtilisateurFen connexion(gest);
     connexion.exec();
     if(connexion.isConnected()){
         this->show();
@@ -35,7 +35,7 @@ void Trottipret::executer(){
         cout << gest.getAdresse(id).toStdString() << endl;
         cout << id << endl;
     }else{
-        this->~Trottipret();
+        this->~PrincipaleFen();
     }
 
 }
@@ -43,8 +43,8 @@ void Trottipret::executer(){
 /**
  * @brief Méthode d'accès au compte utilisateur de Trottipret
  */
-void Trottipret::monCompte(){
-    MonCompte monCompte(id);
+void PrincipaleFen::monCompte(){
+    CompteUtilisateurFen monCompte(id);
     this->hide();
     monCompte.exec();
     this->show();
@@ -53,15 +53,15 @@ void Trottipret::monCompte(){
 /**
  * @brief Lance la fenêtre d'ajout d'annonce
  */
-void Trottipret::ajouterAnnonce(){
-    AjouterAnnonce ajoutAnnonce;
-    ajoutAnnonce.exec();
+void PrincipaleFen::ajouterAnnonce(){
+    AnnonceFen annonceFen;
+    annonceFen.exec();
 }
 
 /**
  * @brief Destructeur de l'objet Trottipret
  */
-Trottipret::~Trottipret()
+PrincipaleFen::~PrincipaleFen()
 {
     delete ui;
 }

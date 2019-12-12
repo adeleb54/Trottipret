@@ -1,7 +1,7 @@
-#include "connexion.h"
-#include "ui_connexion.h"
-#include "inscription.h"
-#include "moncompte.h"
+#include "connexionUtilisateurFen.h"
+#include "inscriptionUtilisateurFen.h"
+#include "ui_connexionUtilisateurFen.h"
+#include "compteUtilisateurFen.h"
 
 /**
  * @authors Roberge-Mentec Corentin, Vernevaut Corentin, Barbier Adèle
@@ -9,12 +9,12 @@
  */
 
 /**
- * @brief Constructeur de la classe Connexion
- * @param parent le QWidget de la classe Connexion
+ * @brief Constructeur de la classe ConnexionUtilisateurFen
+ * @param parent le QWidget de la classe ConnexionUtilisateurFen
  */
-Connexion::Connexion(GestionnaireCompte gest, QWidget *parent) :
+ConnexionUtilisateurFen::ConnexionUtilisateurFen(GestionnaireCompte gest, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Connexion)
+    ui(new Ui::ConnexionUtilisateurFen)
 {
     this->gest = gest;
     is_connected = false;
@@ -30,7 +30,7 @@ Connexion::Connexion(GestionnaireCompte gest, QWidget *parent) :
  * @brief Récupère l'adresse mail entrée
  * @return QString l'adresse mail entrée au format QString
  */
-QString Connexion::getMail(){
+QString ConnexionUtilisateurFen::getMail(){
     return ui-> lineEdit_mail->text();
 }
 
@@ -38,14 +38,14 @@ QString Connexion::getMail(){
  * @brief Récupère le mot de passe entré
  * @return QString le mot de passe au format QString
  */
-QString Connexion::getMdp(){
+QString ConnexionUtilisateurFen::getMdp(){
     return ui->lineEdit_mdp->text();
 }
 
 /**
  * @brief Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est connecté. Sinon il doit de nouveau entrer les champs
  */
-void Connexion::verification(){
+void ConnexionUtilisateurFen::verification(){
 
     if(gest.connexion(getMail(), getMdp())){
         is_connected = true;
@@ -57,8 +57,8 @@ void Connexion::verification(){
 /**
  * @brief Renvoie l'utilisateur sur la page d'inscription
  */
-void Connexion::inscription(){
-    Inscription inscription;
+void ConnexionUtilisateurFen::inscription(){
+    InscriptionUtilisateurFen inscription;
     inscription.exec();
     if(inscription.isRegister()){
         this->show();
@@ -69,14 +69,14 @@ void Connexion::inscription(){
  * @brief Permet de savoir si un utilisateur s'est connecté à l'application ou non
  * @return l'état de la connexion d'un utilisateur
  */
-bool Connexion::isConnected(){
+bool ConnexionUtilisateurFen::isConnected(){
     return is_connected;
 }
 
 /**
  * @brief Ferme l'application
  */
-void Connexion::close(){
+void ConnexionUtilisateurFen::close(){
     std::cout << "Fermeture de l'application" << std::endl;
 }
 
@@ -84,14 +84,14 @@ void Connexion::close(){
  * @brief Retourne l'identifiant de l'utilisateur actuellement connecté
  * @return l'identifiant de l'utilisateur
  */
-int Connexion::getId(){
+int ConnexionUtilisateurFen::getId(){
     return id;
 }
 
 /**
  * @brief Détruit l'objet Inscription
  */
-Connexion::~Connexion()
+ConnexionUtilisateurFen::~ConnexionUtilisateurFen()
 {
     delete ui;
 }
