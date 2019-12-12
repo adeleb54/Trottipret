@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Connexion</class>
- <widget class="QDialog" name="Connexion">
+ <class>ConnexionUtilisateurFen</class>
+ <widget class="QDialog" name="ConnexionUtilisateurFen">
   <property name="geometry">
    <rect>
     <x>0</x>

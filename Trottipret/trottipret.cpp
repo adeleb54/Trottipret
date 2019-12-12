@@ -1,6 +1,6 @@
 #include "trottipret.h"
 #include "ui_trottipret.h"
-#include "connexion.h"
+#include "connexionUtilisateurFen.h"
 #include "moncompte.h"
 #include "ajouterannonce.h"
 
@@ -27,7 +27,7 @@ Trottipret::Trottipret(QWidget *parent) :
  */
 void Trottipret::executer(){
     this->hide();
-    Connexion connexion(gest);
+    ConnexionUtilisateurFen connexion(gest);
     connexion.exec();
     if(connexion.isConnected()){
         this->show();
