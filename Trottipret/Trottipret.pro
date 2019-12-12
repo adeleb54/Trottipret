@@ -28,9 +28,9 @@ SOURCES += \
     annonceFen.cpp \
     compteUtilisateurFen.cpp \
     connexiondb.cpp \
+    inscriptionUtilisateurFen.cpp \
         main.cpp \
     gestionnaireCompte.cpp \
-    inscription.cpp \
     connexionUtilisateurFen.cpp \
     creerannonce.cpp \
     ajoutertrottinette.cpp \
@@ -41,17 +41,17 @@ HEADERS += \
     compteUtilisateurFen.h \
     connexiondb.h \
     gestionnaireCompte.h \
-    inscription.h \
     connexionUtilisateurFen.h \
     creerannonce.h \
     ajoutertrottinette.h \
+    inscriptionUtilisateurFen.h \
     principaleFen.h
 
 FORMS += \
     annonceFen.ui \
     compteUtilisateurFen.ui \
-    inscription.ui \
     connexionUtilisateurFen.ui \
+    inscriptionUtilisateurFen.ui \
     principaleFen.ui
 
 RESOURCES += \

@@ -1,5 +1,5 @@
 #include "connexionUtilisateurFen.h"
-#include "inscription.h"
+#include "inscriptionUtilisateurFen.h"
 #include "ui_connexionUtilisateurFen.h"
 #include "compteUtilisateurFen.h"
 
@@ -58,7 +58,7 @@ void ConnexionUtilisateurFen::verification(){
  * @brief Renvoie l'utilisateur sur la page d'inscription
  */
 void ConnexionUtilisateurFen::inscription(){
-    Inscription inscription;
+    InscriptionUtilisateurFen inscription;
     inscription.exec();
     if(inscription.isRegister()){
         this->show();
