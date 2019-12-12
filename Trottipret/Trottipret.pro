@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    annonceFen.cpp \
     connexiondb.cpp \
         main.cpp \
     gestionnaireCompte.cpp \
@@ -32,27 +33,26 @@ SOURCES += \
     connexionUtilisateurFen.cpp \
     trottipret.cpp \
     moncompte.cpp \
-    ajouterannonce.cpp \
     creerannonce.cpp \
     ajoutertrottinette.cpp
 
 HEADERS += \
+    annonceFen.h \
     connexiondb.h \
     gestionnaireCompte.h \
     inscription.h \
     connexionUtilisateurFen.h \
     trottipret.h \
     moncompte.h \
-    ajouterannonce.h \
     creerannonce.h \
     ajoutertrottinette.h
 
 FORMS += \
+    annonceFen.ui \
     inscription.ui \
     connexionUtilisateurFen.ui \
     trottipret.ui \
-    moncompte.ui \
-    ajouterannonce.ui
+    moncompte.ui
 
 RESOURCES += \
     ressource.qrc

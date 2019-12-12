@@ -2,7 +2,7 @@
 #include "ui_trottipret.h"
 #include "connexionUtilisateurFen.h"
 #include "moncompte.h"
-#include "ajouterannonce.h"
+#include "annonceFen.h"
 
 using namespace std;
 /**
@@ -54,8 +54,8 @@ void Trottipret::monCompte(){
  * @brief Lance la fenêtre d'ajout d'annonce
  */
 void Trottipret::ajouterAnnonce(){
-    AjouterAnnonce ajoutAnnonce;
-    ajoutAnnonce.exec();
+    AnnonceFen annonceFen;
+    annonceFen.exec();
 }
 
 /**
