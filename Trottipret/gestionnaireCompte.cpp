@@ -14,6 +14,7 @@ using namespace std;
  */
 GestionnaireCompte::GestionnaireCompte(){
 
+    QSqlQuery query(db);
     /*On récupère le dernier id entré pour pouvoir l'incrémenter*/
     query.exec("SELECT idUser FROM Utilisateur");
     while(query.next()){
@@ -53,6 +54,7 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
 
         bool memeMail = false;
 
+        QSqlQuery query(db);
         /*On récupère tous les mails*/
         query.prepare("SELECT mail FROM Utilisateur");
         query.exec();
@@ -95,6 +97,7 @@ bool GestionnaireCompte::inscription(QString nom, QString mdp, QString mdpConfir
  */
 bool GestionnaireCompte::connexion(QString mailParam, QString mdp){
     bool est_connecte = true;
+    QSqlQuery query(db);
     query.prepare("SELECT iduser, nom, mdp FROM Utilisateur WHERE mail=?");
     query.addBindValue(mailParam);
 
@@ -150,6 +153,7 @@ int GestionnaireCompte::getId(){
  */
 QString GestionnaireCompte::getNom(int id){
     QString nom = "";
+    QSqlQuery query(db);
     query.prepare("SELECT nom FROM Utilisateur WHERE idUser=:id");
     query.bindValue(":id", id);
     query.exec();
@@ -166,6 +170,7 @@ QString GestionnaireCompte::getNom(int id){
  */
 QString GestionnaireCompte::getAdresse(int id){
     QString mail = "";
+    QSqlQuery query(db);
     query.prepare("SELECT mail FROM Utilisateur WHERE idUser=:id;");
     query.bindValue(":id", id);
     query.exec();
@@ -182,6 +187,7 @@ QString GestionnaireCompte::getAdresse(int id){
  */
 QString GestionnaireCompte::getMdp(int id){
     QString mdp = "";
+    QSqlQuery query(db);
     query.prepare("SELECT mdp FROM Utilisateur WHERE idUser=:id");
     query.bindValue(":id", id);
     query.exec();
@@ -195,6 +201,7 @@ QString GestionnaireCompte::getMdp(int id){
  * @brief Suppression du compte
  */
 void GestionnaireCompte::supprimer(int id){
+    QSqlQuery query(db);
     query.prepare("DELETE FROM Utilisateur WHERE idUser=:id");
     query.bindValue(":id", id);
     if(query.exec()){
