@@ -32,9 +32,9 @@ SOURCES += \
     gestionnaireCompte.cpp \
     inscription.cpp \
     connexionUtilisateurFen.cpp \
-    trottipret.cpp \
     creerannonce.cpp \
-    ajoutertrottinette.cpp
+    ajoutertrottinette.cpp \
+    principaleFen.cpp
 
 HEADERS += \
     annonceFen.h \
@@ -43,16 +43,16 @@ HEADERS += \
     gestionnaireCompte.h \
     inscription.h \
     connexionUtilisateurFen.h \
-    trottipret.h \
     creerannonce.h \
-    ajoutertrottinette.h
+    ajoutertrottinette.h \
+    principaleFen.h
 
 FORMS += \
     annonceFen.ui \
     compteUtilisateurFen.ui \
     inscription.ui \
     connexionUtilisateurFen.ui \
-    trottipret.ui
+    principaleFen.ui
 
 RESOURCES += \
     ressource.qrc

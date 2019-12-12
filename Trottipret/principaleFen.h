@@ -9,13 +9,13 @@
  */
 
 namespace Ui {
-class Trottipret;
+class PrincipaleFen;
 }
 
 /**
  * @brief La classe Trottipret
  */
-class Trottipret : public QMainWindow
+class PrincipaleFen : public QMainWindow
 {
     Q_OBJECT
 
@@ -24,7 +24,7 @@ public:
      * @brief Constructeur de la classe Trottipret
      * @param parent le QWidget de la classe Trottipret
      */
-    explicit Trottipret(QWidget *parent = 0);
+    explicit PrincipaleFen(QWidget *parent = 0);
 
     /**
      * @brief Lancement de l'application Trottipret
@@ -34,12 +34,12 @@ public:
     /**
      * @brief Destructeur de l'objet Trottipret
      */
-    ~Trottipret();
+    ~PrincipaleFen();
 
 
 private:
     int id;
-    Ui::Trottipret *ui;
+    Ui::PrincipaleFen *ui;
     GestionnaireCompte gest;
 
 private slots:
