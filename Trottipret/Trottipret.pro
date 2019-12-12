@@ -29,7 +29,7 @@ SOURCES += \
         main.cpp \
     gestionnaireCompte.cpp \
     inscription.cpp \
-    connexion.cpp \
+    connexionUtilisateurFen.cpp \
     trottipret.cpp \
     moncompte.cpp \
     ajouterannonce.cpp \
@@ -40,7 +40,7 @@ HEADERS += \
     connexiondb.h \
     gestionnaireCompte.h \
     inscription.h \
-    connexion.h \
+    connexionUtilisateurFen.h \
     trottipret.h \
     moncompte.h \
     ajouterannonce.h \
@@ -49,7 +49,7 @@ HEADERS += \
 
 FORMS += \
     inscription.ui \
-    connexion.ui \
+    connexionUtilisateurFen.ui \
     trottipret.ui \
     moncompte.ui \
     ajouterannonce.ui
