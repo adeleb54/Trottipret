@@ -11,12 +11,12 @@
  */
 
 namespace Ui {
-class MonCompte;
+class CompteUtilisateurFen;
 }
 /**
  * @brief La classe MonCompte
  */
-class MonCompte : public QDialog
+class CompteUtilisateurFen : public QDialog
 {
     Q_OBJECT
 
@@ -25,7 +25,7 @@ public:
      * @brief Constructeur de la classe MonCompte
      * @param parent le QWidget de la classe MonCompte
      */
-    explicit MonCompte(int id, QWidget *parent = 0);
+    explicit CompteUtilisateurFen(int id, QWidget *parent = 0);
 
     /**
      * @brief Permet d'accéder au nom entré par l'utilisateur
@@ -66,10 +66,10 @@ public:
     /**
      * Destructeur de l'objet MonCompte
      */
-    ~MonCompte();
+    ~CompteUtilisateurFen();
 
 private:
-    Ui::MonCompte *ui;
+    Ui::CompteUtilisateurFen *ui;
     GestionnaireCompte gest;
     int id;
 

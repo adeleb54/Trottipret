@@ -1,5 +1,5 @@
-#include "moncompte.h"
-#include "ui_moncompte.h"
+#include "compteUtilisateurFen.h"
+#include "ui_compteUtilisateurFen.h"
 
 /**
  * @authors Roberge-Mentec Corentin, Barbier Adèle
@@ -11,9 +11,9 @@ using namespace std;
  * @brief Constructeur de la classe MonCompte
  * @param parent le QWidget de la classe MonCompte
  */
-MonCompte::MonCompte(int id, QWidget *parent) :
+CompteUtilisateurFen::CompteUtilisateurFen(int id, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::MonCompte)
+    ui(new Ui::CompteUtilisateurFen)
 {
     ui->setupUi(this);
     this->id = id;
@@ -31,7 +31,7 @@ MonCompte::MonCompte(int id, QWidget *parent) :
 /**
  * @brief verification des informations à modifier
  */
-void MonCompte::verification(){
+void CompteUtilisateurFen::verification(){
     if (ui->ancienMdpChamps->text() != "" && ui->nouveauMdpChamps->text() != "" && ui->confirmationNouveauMDp->text() != ""){
         cout << "Modification prise en compte" << endl;
     }else{
@@ -42,7 +42,7 @@ void MonCompte::verification(){
 /**
  * @brief Méthode de retour vers la page d'accueil
  */
-void MonCompte::retour(){
+void CompteUtilisateurFen::retour(){
     this->close();
 }
 
@@ -50,7 +50,7 @@ void MonCompte::retour(){
  * @brief Permet d'accéder au nom entré par l'utilisateur
  * @return le nom entré par l'utilisateur
  */
-QString MonCompte::getNom(){
+QString CompteUtilisateurFen::getNom(){
     return ui->nomChamps->text();
 }
 
@@ -58,7 +58,7 @@ QString MonCompte::getNom(){
  * @brief Permet d'accéder au mail entré par l'utilisateur
  * @return le mail entré par l'utilisateur
  */
-QString MonCompte::getMail(){
+QString CompteUtilisateurFen::getMail(){
     return ui->mailChamps->text();
 }
 
@@ -66,7 +66,7 @@ QString MonCompte::getMail(){
  * @brief Permet d'accéder à l'ancien mot de passe entré par l'utilisateur
  * @return l'ancien mot de passe de l'utilisateur
  */
-QString MonCompte::getAncienMdp(){
+QString CompteUtilisateurFen::getAncienMdp(){
     return ui->ancienMdpChamps->text();
 }
 
@@ -74,7 +74,7 @@ QString MonCompte::getAncienMdp(){
  * @brief Permet d'accéder au nouveau mot de passe entré par l'utilisateur
  * @return le nouveau mot de passe de l'utilisateur
  */
-QString MonCompte::getMdp(){
+QString CompteUtilisateurFen::getMdp(){
     return ui->nouveauMdpChamps->text();
 }
 
@@ -82,7 +82,7 @@ QString MonCompte::getMdp(){
  * @brief Permet d'accéder au mot de passe de confirmation entré par l'utilisateur
  * @return le mot de passe de confirmation de l'utilisateur
  */
-QString MonCompte::getMdpConfirmationMdp(){
+QString CompteUtilisateurFen::getMdpConfirmationMdp(){
     return ui->confirmationNouveauMDp->text();
 }
 
@@ -90,14 +90,14 @@ QString MonCompte::getMdpConfirmationMdp(){
  * @brief setId Initialisation de l'identifiant de l'utilisateur connecté
  * @param id L'identifiant
  */
-void MonCompte::setId(int id){
+void CompteUtilisateurFen::setId(int id){
     this->id=id;
 }
 
 /**
  * @brief Suppression du compte
  */
-void MonCompte::supprimer(){
+void CompteUtilisateurFen::supprimer(){
     gest.supprimer(id);
     this->close();
 }
@@ -105,7 +105,7 @@ void MonCompte::supprimer(){
 /**
  * @brief Destructeur de l'objet MonCompte
  */
-MonCompte::~MonCompte()
+CompteUtilisateurFen::~CompteUtilisateurFen()
 {
     delete ui;
 }

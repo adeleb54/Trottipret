@@ -1,7 +1,7 @@
 #include "trottipret.h"
 #include "ui_trottipret.h"
 #include "connexionUtilisateurFen.h"
-#include "moncompte.h"
+#include "compteUtilisateurFen.h"
 #include "annonceFen.h"
 
 using namespace std;
@@ -44,7 +44,7 @@ void Trottipret::executer(){
  * @brief Méthode d'accès au compte utilisateur de Trottipret
  */
 void Trottipret::monCompte(){
-    MonCompte monCompte(id);
+    CompteUtilisateurFen monCompte(id);
     this->hide();
     monCompte.exec();
     this->show();
