@@ -1,8 +1,8 @@
-#include "PrincipaleFen.h"
-#include "ui_principaleFen.h"
-#include "connexionUtilisateurFen.h"
-#include "compteUtilisateurFen.h"
-#include "annonceFen.h"
+#include "trottipret.h"
+#include "ui_trottipret.h"
+#include "connexion.h"
+#include "moncompte.h"
+#include "ajouterannonce.h"
 
 using namespace std;
 /**
@@ -13,9 +13,9 @@ using namespace std;
  * @brief Constructeur de la classe Trottipret
  * @param parent le QWidget de la classe Trottipret
  */
-PrincipaleFen::PrincipaleFen(QWidget *parent) :
+Trottipret::Trottipret(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::PrincipaleFen)
+    ui(new Ui::Trottipret)
 {
     ui->setupUi(this);
     QObject::connect(ui->monCompte, SIGNAL(clicked()), this, SLOT(monCompte()));
@@ -25,13 +25,9 @@ PrincipaleFen::PrincipaleFen(QWidget *parent) :
 /**
  * @brief Lancement de l'application Trottipret
  */
-void PrincipaleFen::executer(){
+void Trottipret::executer(){
     this->hide();
-<<<<<<< Updated upstream:Trottipret/principaleFen.cpp
-    ConnexionUtilisateurFen connexion(gest);
-=======
     Connexion connexion(gestCompte);
->>>>>>> Stashed changes:Trottipret/trottipret.cpp
     connexion.exec();
     if(connexion.isConnected()){
         this->show();
@@ -39,7 +35,7 @@ void PrincipaleFen::executer(){
         cout << gestCompte.getAdresse(id).toStdString() << endl;
         cout << id << endl;
     }else{
-        this->~PrincipaleFen();
+        this->~Trottipret();
     }
 
 }
@@ -47,8 +43,8 @@ void PrincipaleFen::executer(){
 /**
  * @brief Méthode d'accès au compte utilisateur de Trottipret
  */
-void PrincipaleFen::monCompte(){
-    CompteUtilisateurFen monCompte(id);
+void Trottipret::monCompte(){
+    MonCompte monCompte(id);
     this->hide();
     monCompte.exec();
     this->show();
@@ -57,29 +53,15 @@ void PrincipaleFen::monCompte(){
 /**
  * @brief Lance la fenêtre d'ajout d'annonce
  */
-<<<<<<< Updated upstream:Trottipret/principaleFen.cpp
-void PrincipaleFen::ajouterAnnonce(){
-    AnnonceFen annonceFen;
-    annonceFen.exec();
-=======
 void Trottipret::ajouterAnnonce(){
     AjouterAnnonce ajoutAnnonce(gestAnnonce);
     ajoutAnnonce.exec();
->>>>>>> Stashed changes:Trottipret/trottipret.cpp
-}
-
-/**
- * @brief Permet d'accéder à l'id de l'utilisateur actuel de l'application
- * @return l'id de l'utilisateur
- */
-int Trottipret::getId(){
-    return id;
 }
 
 /**
  * @brief Destructeur de l'objet Trottipret
  */
-PrincipaleFen::~PrincipaleFen()
+Trottipret::~Trottipret()
 {
     delete ui;
 }

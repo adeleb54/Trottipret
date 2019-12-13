@@ -12,13 +12,13 @@
  * @author Barbier Adèle
  */
 namespace Ui {
-class ConnexionUtilisateurFen;
+class Connexion;
 }
 
 /**
  * @brief La classe Connexion
  */
-class ConnexionUtilisateurFen : public QDialog
+class Connexion : public QDialog
 {
     Q_OBJECT
 
@@ -28,7 +28,7 @@ public:
      * @brief Constructeur de la classe Connexion
      * @param parent le QWidget de la classe Connexion
      */
-    explicit ConnexionUtilisateurFen(GestionnaireCompte gest, QWidget *parent = 0);
+    explicit Connexion(GestionnaireCompte gest, QWidget *parent = 0);
     /**
      * @brief Récupère l'adresse mail entrée
      * @return QString l'adresse mail entrée
@@ -57,13 +57,13 @@ public:
     /**
      * @brief Détruit l'objet Inscription
      */
-    ~ConnexionUtilisateurFen();
+    ~Connexion();
 
 private:
     GestionnaireCompte gest;
     bool is_connected;
     int id;
-    Ui::ConnexionUtilisateurFen *ui;
+    Ui::Connexion *ui;
 
 private slots:
     /**

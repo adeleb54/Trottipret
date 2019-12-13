@@ -11,10 +11,7 @@ class GestionnaireAnnonce
 {
 public:
     GestionnaireAnnonce();
-    void ajouterAnnonce(QString nom, QString description, QString retrait, QString retour, int taille, bool electrique, double prix, QDate dateDeb, QDate dateFin, QTime heureDeb, QTime heureFin);
-private:
-    int idTrot;
-    int idAnnonce;
+    void ajoutTrottinette(QString nom, QString description, QString retour, QString retrait, int taille, double prix, QDate dateDebLoca, QDate dateFinLoca, QTime heureDebLoca, QTime heureFinLoca);
 };
 
 #endif // GESTIONNAIREANNONCE_H

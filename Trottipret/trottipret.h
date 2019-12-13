@@ -3,20 +3,20 @@
 
 #include <QMainWindow>
 #include "gestionnaireCompte.h"
-#include "gestionnaireannonce.h"
+#include "gestionnaireAnnonce.h"
 
 /**
  * @author Roberge-Mentec Corentin
  */
 
 namespace Ui {
-class PrincipaleFen;
+class Trottipret;
 }
 
 /**
  * @brief La classe Trottipret
  */
-class PrincipaleFen : public QMainWindow
+class Trottipret : public QMainWindow
 {
     Q_OBJECT
 
@@ -25,7 +25,7 @@ public:
      * @brief Constructeur de la classe Trottipret
      * @param parent le QWidget de la classe Trottipret
      */
-    explicit PrincipaleFen(QWidget *parent = 0);
+    explicit Trottipret(QWidget *parent = 0);
 
     /**
      * @brief Lancement de l'application Trottipret
@@ -33,27 +33,16 @@ public:
     void executer();
 
     /**
-     * @brief Permet d'accéder à l'id de l'utilisateur actuel de l'application
-     * @return l'id de l'utilisateur
-     */
-    int getId();
-
-    /**
      * @brief Destructeur de l'objet Trottipret
      */
-    ~PrincipaleFen();
+    ~Trottipret();
 
 
 private:
     int id;
-<<<<<<< Updated upstream:Trottipret/principaleFen.h
-    Ui::PrincipaleFen *ui;
-    GestionnaireCompte gest;
-=======
     Ui::Trottipret *ui;
     GestionnaireCompte gestCompte;
     GestionnaireAnnonce gestAnnonce;
->>>>>>> Stashed changes:Trottipret/trottipret.h
 
 private slots:
     /**

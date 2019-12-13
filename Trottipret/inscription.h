@@ -13,13 +13,13 @@
   */
 
 namespace Ui {
-class InscriptionUtilisateurFen;
+class Inscription;
 }
 
 /**
  * @brief La classe Inscription
  */
-class InscriptionUtilisateurFen : public QDialog
+class Inscription : public QDialog
 {
     Q_OBJECT
     bool is_register;
@@ -29,7 +29,7 @@ public:
      * @brief Constructeur de la classe Inscription
      * @param parent le QWidget de la classe Inscription
      */
-    explicit InscriptionUtilisateurFen(QWidget *parent = 0);
+    explicit Inscription(QWidget *parent = 0);
     /**
      * @brief Récupère le nom entré
      * @return QString le nom au format QString
@@ -60,11 +60,11 @@ public:
     /**
      * @brief Détruit l'objet Inscription
      */
-    ~InscriptionUtilisateurFen();
+    ~Inscription();
 
 private:
     GestionnaireCompte gest;
-    Ui::InscriptionUtilisateurFen *ui;
+    Ui::Inscription *ui;
 
 private slots:
     /**
