@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "gestionnaireCompte.h"
+#include "gestionnaireannonce.h"
 
 /**
  * @author Roberge-Mentec Corentin
@@ -32,6 +33,12 @@ public:
     void executer();
 
     /**
+     * @brief Permet d'accéder à l'id de l'utilisateur actuel de l'application
+     * @return l'id de l'utilisateur
+     */
+    int getId();
+
+    /**
      * @brief Destructeur de l'objet Trottipret
      */
     ~PrincipaleFen();
@@ -39,8 +46,14 @@ public:
 
 private:
     int id;
+<<<<<<< Updated upstream:Trottipret/principaleFen.h
     Ui::PrincipaleFen *ui;
     GestionnaireCompte gest;
+=======
+    Ui::Trottipret *ui;
+    GestionnaireCompte gestCompte;
+    GestionnaireAnnonce gestAnnonce;
+>>>>>>> Stashed changes:Trottipret/trottipret.h
 
 private slots:
     /**

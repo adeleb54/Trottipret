@@ -11,10 +11,15 @@ using namespace std;
  * @brief Le constructeur de la classe AjouterAnnonce
  * @param parent le QWidget de la classe AjouterAnnonce
  */
+<<<<<<< Updated upstream:Trottipret/annonceFen.cpp
 AnnonceFen::AnnonceFen(QWidget *parent) :
+=======
+AjouterAnnonce::AjouterAnnonce(GestionnaireAnnonce gestAnnonce, QWidget *parent) :
+>>>>>>> Stashed changes:Trottipret/ajouterannonce.cpp
     QDialog(parent),
     ui(new Ui::AnnonceFen)
 {
+    this->gestAnnonce = gestAnnonce;
     ui->setupUi(this);
     QObject::connect(ui->valider, SIGNAL(clicked()), this, SLOT(validation()));
 }
@@ -93,7 +98,7 @@ QTime AnnonceFen::heureDeb(){
 
 /**
  * @brief Permet d'accéder à la date de fin de location entrée par l'utilisateur
- * @return La date de fin location entrée par l'utilisateur
+ * @return La date de fin locfalseation entrée par l'utilisateur
  */
 QDate AnnonceFen::dateFin(){
     return ui->dateFin->date();
@@ -118,34 +123,16 @@ void AnnonceFen::validation(){
     QDate dateDebLoca = dateDeb();
     QDate dateFinLoca = dateFin();
     QTime heureDebLoca = heureDeb(), heureFinLoca = heureFin();
-    QMessageBox alert;
+    bool electrique = isChecked();
 
-    if (taille < 60 || taille > 110){
-        alert.setText("Erreur la taille de la trottinette doit être comprise entre 60cm et 110cm");
-        alert.exec();
-    }else if(prix <= 0 || prix >= 1000){
-        alert.setText("Erreur le prix de la trottinette doit être compris entre 0€ (exclu) et 1000€ (exclu)");
-        alert.exec();
-    }else if (nom.toStdString() == ""){
-        alert.setText("Erreur le nom de la trottinette doit être rempli");
-        alert.exec();
-    }else if (description.toStdString() == ""){
-        alert.setText("Erreur la description de la trottinette doit être remplie");
-        alert.exec();
-    }else if (retrait.toStdString() == ""){
-        alert.setText("Erreur le lieu de retrait de la trottinette doit être remplie");
-        alert.exec();
-    }else if(retour.toStdString() == ""){
-        alert.setText("Erreur le lieu de retour de la trottinette doit être remplie");
-        alert.exec();
-    }else if(dateDebLoca >= dateFinLoca){
-        alert.setText("Erreur la date de début de location de la trottinette doit être inférieure à celle de fin de location");
-        alert.exec();
-    }else{
-        CreerAnnonce anonce;
-        anonce.creationAnnonce(nom, description, retour, retrait, taille, prix, dateDebLoca, dateFinLoca, heureDebLoca, heureFinLoca);
-    }
+    gestAnnonce.ajouterAnnonce(nom, description, retrait, retour, taille, electrique, prix, dateDebLoca, dateFinLoca, heureDebLoca, heureFinLoca);
+}
 
+/**
+ * @brief Méthode permettant de revenir au menu principal de l'application
+ */
+void AjouterAnnonce::retour(){
+    this->close();
 }
 
 AnnonceFen::~AnnonceFen()

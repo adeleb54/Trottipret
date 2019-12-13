@@ -5,7 +5,11 @@
 #include <QMessageBox>
 #include <iostream>
 #include <string.h>
+<<<<<<< Updated upstream:Trottipret/annonceFen.h
 #include "creerannonce.h"
+=======
+#include "gestionnaireannonce.h"
+>>>>>>> Stashed changes:Trottipret/ajouterannonce.h
 
 namespace Ui {
 class AnnonceFen;
@@ -23,7 +27,11 @@ public:
      * @brief Le constructeur de la classe AjouterAnnonce
      * @param parent le QWidget de la classe AjouterAnnonce
      */
+<<<<<<< Updated upstream:Trottipret/annonceFen.h
     explicit AnnonceFen(QWidget *parent = 0);
+=======
+    explicit AjouterAnnonce(GestionnaireAnnonce gestAnnonce, QWidget *parent = 0);
+>>>>>>> Stashed changes:Trottipret/ajouterannonce.h
 
     /**
      * @brief Permet d'accéder au nom de la trottinette entré par l'utilisateur
@@ -91,8 +99,12 @@ public:
      */
     QTime heureFin();
 
+<<<<<<< Updated upstream:Trottipret/annonceFen.h
 
     ~AnnonceFen();
+=======
+    ~AjouterAnnonce();
+>>>>>>> Stashed changes:Trottipret/ajouterannonce.h
 
 private slots:
 
@@ -102,8 +114,18 @@ private slots:
      */
     void validation();
 
+    /**
+     * @brief Méthode permettant de revenir au menu principal de l'application
+     */
+    void retour();
+
 private:
+<<<<<<< Updated upstream:Trottipret/annonceFen.h
     Ui::AnnonceFen *ui;
+=======
+    Ui::AjouterAnnonce *ui;
+    GestionnaireAnnonce gestAnnonce;
+>>>>>>> Stashed changes:Trottipret/ajouterannonce.h
 };
 
 #endif // AJOUTERANNONCE_H

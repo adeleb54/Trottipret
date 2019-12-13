@@ -33,15 +33,9 @@ CompteUtilisateurFen::CompteUtilisateurFen(int id, QWidget *parent) :
  */
 void CompteUtilisateurFen::verification(){
     if (ui->ancienMdpChamps->text() != "" && ui->nouveauMdpChamps->text() != "" && ui->confirmationNouveauMDp->text() != ""){
-<<<<<<< HEAD
-        cout << "modification prise en compte" << endl;
-    }else{
-        cout << "Tout les champs de mot de passe ne sont pas remplis!" << endl;
-=======
         cout << "Modification prise en compte" << endl;
     }else{
         cout << "Veuillez remplir tous les champs pour modifier le mot de passe" << endl;
->>>>>>> 96c11dfd8e1aac70246875b5a94678f0e422d78a
     }
 }
 

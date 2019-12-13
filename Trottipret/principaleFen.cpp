@@ -27,12 +27,16 @@ PrincipaleFen::PrincipaleFen(QWidget *parent) :
  */
 void PrincipaleFen::executer(){
     this->hide();
+<<<<<<< Updated upstream:Trottipret/principaleFen.cpp
     ConnexionUtilisateurFen connexion(gest);
+=======
+    Connexion connexion(gestCompte);
+>>>>>>> Stashed changes:Trottipret/trottipret.cpp
     connexion.exec();
     if(connexion.isConnected()){
         this->show();
         id = connexion.getId();
-        cout << gest.getAdresse(id).toStdString() << endl;
+        cout << gestCompte.getAdresse(id).toStdString() << endl;
         cout << id << endl;
     }else{
         this->~PrincipaleFen();
@@ -53,9 +57,23 @@ void PrincipaleFen::monCompte(){
 /**
  * @brief Lance la fenêtre d'ajout d'annonce
  */
+<<<<<<< Updated upstream:Trottipret/principaleFen.cpp
 void PrincipaleFen::ajouterAnnonce(){
     AnnonceFen annonceFen;
     annonceFen.exec();
+=======
+void Trottipret::ajouterAnnonce(){
+    AjouterAnnonce ajoutAnnonce(gestAnnonce);
+    ajoutAnnonce.exec();
+>>>>>>> Stashed changes:Trottipret/trottipret.cpp
+}
+
+/**
+ * @brief Permet d'accéder à l'id de l'utilisateur actuel de l'application
+ * @return l'id de l'utilisateur
+ */
+int Trottipret::getId(){
+    return id;
 }
 
 /**
