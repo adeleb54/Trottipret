@@ -15,6 +15,7 @@ AjouterAnnonce::AjouterAnnonce(GestionnaireAnnonce gest, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AjouterAnnonce)
 {
+    this->gest = gest;
     ui->setupUi(this);
     QObject::connect(ui->valider, SIGNAL(clicked()), this, SLOT(validation()));
 }
