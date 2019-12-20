@@ -1,5 +1,5 @@
-#include "annonceFen.h"
-#include "ui_annonceFen.h"
+#include "ajouterannonce.h"
+#include "ui_ajouterannonce.h"
 
 /**
   * @author Roberge-Mentec Corentin
@@ -11,10 +11,11 @@ using namespace std;
  * @brief Le constructeur de la classe AjouterAnnonce
  * @param parent le QWidget de la classe AjouterAnnonce
  */
-AnnonceFen::AnnonceFen(QWidget *parent) :
+AjouterAnnonce::AjouterAnnonce(GestionnaireAnnonce gest, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::AnnonceFen)
+    ui(new Ui::AjouterAnnonce)
 {
+    this->gest = gest;
     ui->setupUi(this);
     QObject::connect(ui->valider, SIGNAL(clicked()), this, SLOT(validation()));
 }
@@ -23,7 +24,7 @@ AnnonceFen::AnnonceFen(QWidget *parent) :
  * @brief Permet d'accéder au nom de la trottinette entré par l'utilisateur
  * @return Le nom de la trottinette entré par l'ordinateur
  */
-QString AnnonceFen::getNom(){
+QString AjouterAnnonce::getNom(){
     return ui->nom->text();
 }
 
@@ -31,7 +32,7 @@ QString AnnonceFen::getNom(){
  * @brief Permet d'accéder à la taille de la trottinette entrée par l'utilisateur
  * @return La taille de la trottinette entrée par l'utilisateur
  */
-int AnnonceFen::getTaille(){
+int AjouterAnnonce::getTaille(){
     return ui->taille->text().toInt(NULL, 10);
 }
 
@@ -39,7 +40,7 @@ int AnnonceFen::getTaille(){
  * @brief Permet de savoir si la checkbox a été cochée ou non par l'utilisateur
  * @return L'état de la checkbox
  */
-bool AnnonceFen::isChecked(){
+bool AjouterAnnonce::isChecked(){
     return ui->checkBox->isChecked();
 }
 
@@ -47,7 +48,7 @@ bool AnnonceFen::isChecked(){
  * @brief Permet d'accéder à la description entrée par l'utilisateur
  * @return La description entrée par l'utilisateur
  */
-QString AnnonceFen::getDescription(){
+QString AjouterAnnonce::getDescription(){
     return ui->description->toPlainText();
 }
 
@@ -55,7 +56,7 @@ QString AnnonceFen::getDescription(){
  * @brief Permet d'accéder au prix entré par l'utilisateur
  * @return Le prix entré par l'utilisateur
  */
-double AnnonceFen::getPrix(){
+double AjouterAnnonce::getPrix(){
     return ui->prix->text().toDouble(NULL);
 }
 
@@ -63,7 +64,7 @@ double AnnonceFen::getPrix(){
  * @brief Permet d'accéder au lieu de retrait entré par l'utilisateur
  * @return Le lieu de retrait entré par l'utilisateur
  */
-QString AnnonceFen::lieuRetrait(){
+QString AjouterAnnonce::lieuRetrait(){
     return ui->retrait->text();
 }
 
@@ -71,7 +72,7 @@ QString AnnonceFen::lieuRetrait(){
  * @brief Permet d'accéder au lieu de retour entré par l'utilisateur
  * @return Le lieu de retrait entré par l'utilisateur
  */
-QString AnnonceFen::lieuRetour(){
+QString AjouterAnnonce::lieuRetour(){
     return ui->retour->text();
 }
 
@@ -79,7 +80,7 @@ QString AnnonceFen::lieuRetour(){
  * @brief Permet d'accéder à la date de début de location entrée par l'utilisateur
  * @return La date de début location entrée par l'utilisateur
  */
-QDate AnnonceFen::dateDeb(){
+QDate AjouterAnnonce::dateDeb(){
     return ui->dateDeb->date();
 }
 
@@ -87,7 +88,7 @@ QDate AnnonceFen::dateDeb(){
  * @brief Permet d'accéder à l'heure de début de location entrée par l'utilisateur
  * @return L'heure de début location entrée par l'utilisateur
  */
-QTime AnnonceFen::heureDeb(){
+QTime AjouterAnnonce::heureDeb(){
     return ui->heureDeb->time();
 }
 
@@ -95,7 +96,7 @@ QTime AnnonceFen::heureDeb(){
  * @brief Permet d'accéder à la date de fin de location entrée par l'utilisateur
  * @return La date de fin location entrée par l'utilisateur
  */
-QDate AnnonceFen::dateFin(){
+QDate AjouterAnnonce::dateFin(){
     return ui->dateFin->date();
 }
 
@@ -103,7 +104,7 @@ QDate AnnonceFen::dateFin(){
  * @brief Permet d'accéder à l'heure de fin de location entrée par l'utilisateur
  * @return L'heure de fin location entrée par l'utilisateur
  */
-QTime AnnonceFen::heureFin(){
+QTime AjouterAnnonce::heureFin(){
     return ui->heureFin->time();
 }
 
@@ -111,7 +112,7 @@ QTime AnnonceFen::heureFin(){
  * @brief Méthode permettant de vérifier les données entrées par l'utilisateur
  * et valider l'ajout de l'annonce
  */
-void AnnonceFen::validation(){
+void AjouterAnnonce::validation(){
     QString nom = getNom(), description = getDescription(), retour = lieuRetour(), retrait = lieuRetrait();
     int taille = getTaille();
     double prix = getPrix();
@@ -142,13 +143,12 @@ void AnnonceFen::validation(){
         alert.setText("Erreur la date de début de location de la trottinette doit être inférieure à celle de fin de location");
         alert.exec();
     }else{
-        CreerAnnonce anonce;
-        anonce.creationAnnonce(nom, description, retour, retrait, taille, prix, dateDebLoca, dateFinLoca, heureDebLoca, heureFinLoca);
+        gest.ajoutTrottinette(nom, description, retour, retrait, taille, prix, dateDebLoca, dateFinLoca, heureDebLoca, heureFinLoca);
     }
 
 }
 
-AnnonceFen::~AnnonceFen()
+AjouterAnnonce::~AjouterAnnonce()
 {
     delete ui;
 }

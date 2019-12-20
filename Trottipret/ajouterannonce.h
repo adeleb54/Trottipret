@@ -5,16 +5,17 @@
 #include <QMessageBox>
 #include <iostream>
 #include <string.h>
-#include "creerannonce.h"
+#include "ajouterannonce.h"
+#include "gestionnaireAnnonce.h"
 
 namespace Ui {
-class AnnonceFen;
+class AjouterAnnonce;
 }
 
 /**
  * @brief La classe AjouterAnnonce
  */
-class AnnonceFen : public QDialog
+class AjouterAnnonce : public QDialog
 {
     Q_OBJECT
 
@@ -23,7 +24,7 @@ public:
      * @brief Le constructeur de la classe AjouterAnnonce
      * @param parent le QWidget de la classe AjouterAnnonce
      */
-    explicit AnnonceFen(QWidget *parent = 0);
+    explicit AjouterAnnonce(GestionnaireAnnonce gest, QWidget *parent = 0);
 
     /**
      * @brief Permet d'accéder au nom de la trottinette entré par l'utilisateur
@@ -92,7 +93,7 @@ public:
     QTime heureFin();
 
 
-    ~AnnonceFen();
+    ~AjouterAnnonce();
 
 private slots:
 
@@ -103,7 +104,8 @@ private slots:
     void validation();
 
 private:
-    Ui::AnnonceFen *ui;
+    Ui::AjouterAnnonce *ui;
+    GestionnaireAnnonce gest;
 };
 
 #endif // AJOUTERANNONCE_H

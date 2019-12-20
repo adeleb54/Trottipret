@@ -1,5 +1,5 @@
-#include "inscriptionUtilisateurFen.h"
-#include "ui_inscriptionUtilisateurFen.h"
+#include "inscription.h"
+#include "ui_inscription.h"
 
 /**
   * @author Roberge-Mentec Corentin, Vernevaut Corentin
@@ -9,9 +9,9 @@
  * @brief Constructeur de la classe Inscription
  * @param parent le QWidget de la classe Inscription
  */
-InscriptionUtilisateurFen::InscriptionUtilisateurFen(QWidget *parent) :
+Inscription::Inscription(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::InscriptionUtilisateurFen)
+    ui(new Ui::Inscription)
 {
     ui->setupUi(this);
     ui->lineEdit_mdp->setEchoMode(QLineEdit ::Password);
@@ -23,7 +23,7 @@ InscriptionUtilisateurFen::InscriptionUtilisateurFen(QWidget *parent) :
 /**
  * @brief Vérifie que les champs entrés par l'utilisateur sont corrects. Si c'est le cas, l'utilisateur est inscrit. Sinon il doit de nouveau entrer les champs
  */
-void InscriptionUtilisateurFen::verification() {
+void Inscription::verification() {
    if (gest.inscription(getNom(), getMdp(), getMdpConfirmation(), getAdresse())){
        is_register = true;
        this->hide();
@@ -34,7 +34,7 @@ void InscriptionUtilisateurFen::verification() {
  * @brief Récupère le nom entré
  * @return QString le nom au format QString
  */
-QString InscriptionUtilisateurFen::getNom(){
+QString Inscription::getNom(){
     return ui->lineEdit_nom->text();
 }
 
@@ -42,7 +42,7 @@ QString InscriptionUtilisateurFen::getNom(){
  * @brief Récupère le mot de passe entré
  * @return QString le mot de passe au format QString
  */
-QString InscriptionUtilisateurFen::getMdp(){
+QString Inscription::getMdp(){
     return ui->lineEdit_mdp->text();
 }
 
@@ -50,7 +50,7 @@ QString InscriptionUtilisateurFen::getMdp(){
  * @brief Récupère la confirmation du mot de passe entré
  * @return QString la confirmation du mot de passe au format QString
  */
-QString InscriptionUtilisateurFen::getMdpConfirmation(){
+QString Inscription::getMdpConfirmation(){
     return ui->lineEdit_confirmMdp->text();
 }
 
@@ -58,7 +58,7 @@ QString InscriptionUtilisateurFen::getMdpConfirmation(){
  * @brief Récupère l'adresse mail entrée
  * @return QString l'adresse mail entrée au format QString
  */
-QString InscriptionUtilisateurFen::getAdresse(){
+QString Inscription::getAdresse(){
     return ui->lineEdit_mail->text();
 }
 
@@ -66,14 +66,14 @@ QString InscriptionUtilisateurFen::getAdresse(){
  * @brief Permet de savoir si un utilisateur s'est inscrit à l'application ou non
  * @return l'état d'inscription d'un utilisateur
  */
-bool InscriptionUtilisateurFen::isRegister(){
+bool Inscription::isRegister(){
     return is_register;
 }
 
 /**
  * @brief Détruit l'objet Inscription
  */
-InscriptionUtilisateurFen::~InscriptionUtilisateurFen()
+Inscription::~Inscription()
 {
     delete ui;
 }

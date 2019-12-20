@@ -11,6 +11,9 @@
  * @authors Barbier Adèle, Vernevaut Corentin, Roberge-Mentec Corentin
  */
 
+namespace Ui {
+class GestionnaireCompte;
+}
 /**
  * @brief La classe GestionnaireCompte
  */
@@ -70,7 +73,7 @@ public:
     void supprimer(int id);
 
 private :
-    QSqlDatabase db = QSqlDatabase::database();
+    QSqlQuery query;
     int id = 0;
 };
 
